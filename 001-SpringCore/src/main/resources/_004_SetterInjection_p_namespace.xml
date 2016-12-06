@@ -1,0 +1,45 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<bean id="person" class="_001.Person4" 
+		p:id="1" 
+		p:name="bimal"
+		p:languages-ref="languages" 
+		p:address-ref="address" />
+
+	<bean id="languages" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>English</value>
+				<value>Hindi</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	<bean id="address" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="permanentAddress" />
+				<ref bean="presentAddress" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="permanentAddress" class="_001.Address4">
+		<property name="streetName" value="Tokobari" />
+		<property name="city" value="Guwahati" />
+		<property name="zip" value="781001" />
+	</bean>
+
+	<bean id="presentAddress" class="_001.Address4">
+		<property name="streetName" value="Fremont Blvd" />
+		<property name="city" value="Fremont" />
+		<property name="zip" value="94538" />
+	</bean>
+</beans>

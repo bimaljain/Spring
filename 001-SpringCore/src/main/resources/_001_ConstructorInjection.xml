@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="permanentAddress" class="_001.Address">
+		<constructor-arg index="0" value="Fremont Blvd" />
+		<constructor-arg index="1" value="Fremont" />
+		<constructor-arg index="2" value="94538"/>
+	</bean>
+	
+	<bean id="person" class="_001.Person" >
+		<constructor-arg index="0" value="1"/>
+		<constructor-arg index="1" value="bimal" />
+		<constructor-arg index="2" ref="permanentAddress" />
+	</bean>
+</beans>

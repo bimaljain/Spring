@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+    
+ default-init-method="customInit" default-destroy-method="customDestroy" >
+
+	<bean id="beanA" class="_001.A2" scope="singleton">
+		<constructor-arg ref="beanB" />
+		<property name="name" value="bimal" />
+	</bean>
+
+	<bean id="beanB" class="_001.B2" />
+	
+	<bean class="_001.FactoryPostProcessorImpl"/>	
+	
+	<!-- below post processor are applied to all spring beans -->	
+	<!-- without ordered interface, spring executes post processors in the sequence in which they are registered below-->
+	<!-- with ordered interface below sequence can be overidden -->
+	<bean class="_001.BeanPostProcessorImpl2"/>
+	<bean class="_001.BeanPostProcessorImpl"/>
+	
+</beans>

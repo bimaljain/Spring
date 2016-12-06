@@ -45,3 +45,27 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/007-Annotation-Autowired/
+/008-JavaConfig/
+/010-Filter/
+/007-MessageSource/
+/008-ResourceLoader/
+/004-ApplicationEvent/
+/006-Inheritance/
+/02-BeanScope/
+/06-05-InjectingInnerBeans/
+/09-01-Annotation@Required/
+/09-06-Annotation@Import/
+/22-AOP_XMLBased/
+/23-AOP_AspectJBased/
+/24-JDBC/
+/25-SPCall/
+/26-DeclarativeTransactionMgmt/
+/27-ProgrammaticTransactionMgmt/
+/28-LoggingWithLog4j/
+/29-LoggingWithJCL/
+/30-HelloWeb/
+/31-FormHandling/
+/32-PageRedirection/
+/33-StaticPages/
+/34-ExceptionHandling/

@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <bean name="fileDAO" class="_001.FileAppDAO"/>
+    <bean name="dbDAO" class="_001.DBAppDAO"/>
+    <bean name="fileDAOFactory" class="_001.IDAOFactory">
+        <lookup-method name="getDAO" bean="fileDAO"/>
+    </bean>
+    <bean name="dbDAOFactory" class="_001.IDAOFactory">
+        <lookup-method name="getDAO" bean="dbDAO"/>
+    </bean>
+	
+</beans>

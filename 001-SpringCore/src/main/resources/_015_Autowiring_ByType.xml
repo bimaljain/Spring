@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="person" class="_001.Person7" autowire="byType">
+		<property name="id" value="1" />
+		<property name="name" value="bimal" />
+	</bean>
+
+	<bean id="address" class="_001.Address7">
+		<constructor-arg index="0" value="Fremont Blvd" />
+		<constructor-arg index="1" value="Fremont" />
+		<constructor-arg index="2" value="94538" />
+	</bean>
+<!-- 
+If you define 2 beans of same type, autowire byType will fail
+
+	<bean id="address1" class="bytype.Address">
+		<constructor-arg index="0" value="Leslie St" />
+		<constructor-arg index="1" value="Fremont" />
+		<constructor-arg index="2" value="94538" />
+	</bean>
+-->
+</beans>

@@ -1,0 +1,140 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<!-- LIST INJECTION -->
+	<bean id="person" class="_001.Person2">
+		<constructor-arg>
+			<list>
+				<value>coding</value>
+				<value>sleeping</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg> <!-- can also use index instead of value-type-->
+			<list value-type="java.lang.Long">
+				<value>4158609455</value>
+				<value>5108945820</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="permanentAddress" />
+				<ref bean="presentAddress" />
+			</list>
+		</constructor-arg>
+
+		<!-- MAP INJECTION -->
+		<constructor-arg>
+			<map>
+				<entry key="What is Java" value="Java is a object oriented language" />
+				<entry key="What is C" value="C is a procedural language" />
+			</map>
+		</constructor-arg>
+		<constructor-arg>
+			<map key-type="java.lang.Long" value-type="java.lang.Long">
+				<entry key="1" value="4158609455" />
+				<entry key="2" value="5108945820" />
+			</map>
+		</constructor-arg>
+		<constructor-arg>
+			<map key-type="_001.Question" value-type="_001.Answer">
+				<entry key-ref="q1" value-ref="a1" />
+				<entry key-ref="q2" value-ref="a2" />
+			</map>
+		</constructor-arg>
+
+		<!-- SET INJECTION -->
+		<constructor-arg>
+			<set>
+				<value>coding</value>
+				<value>sleeping</value>
+			</set>
+		</constructor-arg>
+		<constructor-arg>
+			<set value-type="java.lang.Long">
+				<value>4158609455</value>
+				<value>5108945820</value>
+			</set>
+		</constructor-arg>
+		<constructor-arg>
+			<set>
+				<ref bean="permanentAddress" />
+				<ref bean="presentAddress" />
+			</set>
+		</constructor-arg>
+
+		<!-- ARRAY INJECTION -->
+		<constructor-arg>
+			<array>
+				<value>coding</value>
+				<value>sleeping</value>
+			</array>
+		</constructor-arg>
+		<constructor-arg>
+			<array value-type="java.lang.Long">
+				<value>4158609455</value>
+				<value>5108945820</value>
+			</array>
+		</constructor-arg>
+		<constructor-arg>
+			<array value-type="_001.Address2">
+				<ref bean="permanentAddress" />
+				<ref bean="presentAddress" />
+			</array>
+		</constructor-arg>
+
+		<!-- PROP INJECTION -->
+		<constructor-arg>
+			<props>
+				<prop key="1">coding</prop>
+				<prop key="2">sleeping</prop>
+			</props>
+		</constructor-arg>
+		<constructor-arg>
+			<props value-type="java.lang.Long">
+				<prop key="1">4158609455</prop>
+				<prop key="2">5108945820</prop>
+			</props>
+		</constructor-arg>
+		<!-- NOTE: below does not work -->
+		<constructor-arg>
+			<props value-type="_001.Address2">
+				<prop key="1">permanentAddress</prop>
+				<prop key="2">presentAddress</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+
+	<!-- DEPENDENCIES -->
+	<bean id="permanentAddress" class="_001.Address2">
+		<constructor-arg index="0" value="Tokobari" />
+		<constructor-arg index="1" value="Guwahati" />
+		<constructor-arg index="2" value="781001" />
+	</bean>
+	<bean id="presentAddress" class="_001.Address2">
+		<constructor-arg index="0" value="Fremont Blvd" />
+		<constructor-arg index="1" value="Fremont" />
+		<constructor-arg index="2" value="94538" />
+	</bean>
+	<bean id="q1" class="_001.Question">
+		<constructor-arg value="1" />
+		<constructor-arg value="What is Java" />
+	</bean>
+	<bean id="q2" class="_001.Question">
+		<constructor-arg value="2" />
+		<constructor-arg value="What is C" />
+	</bean>
+	<bean id="a1" class="_001.Answer">
+		<constructor-arg value="1" />
+		<constructor-arg value="Java is an object oriented language" />
+	</bean>
+	<bean id="a2" class="_001.Answer">
+		<constructor-arg value="2" />
+		<constructor-arg value="C is a procedural language" />
+	</bean>
+</beans>
