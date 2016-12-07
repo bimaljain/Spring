@@ -119,7 +119,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class _017_AutowiredByConstructor {
 	
 	public static void main(String[] args){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_017_Autowired.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_013_BeanLifeCycle_Annotation.xml");
 		System.out.println((_017_AutowiredByConstructor)ctx.getBean("_017_AutowiredByConstructor"));	
 	}
 	

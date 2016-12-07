@@ -5,10 +5,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component //uncomment this first
 public class _019_AutowiredByProperties {
 	public static void main(String[] args){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_017_Autowired.xml");		
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_013_BeanLifeCycle_Annotation.xml");		
 		System.out.println((_019_AutowiredByProperties)ctx.getBean("_019_AutowiredByProperties"));
 	}
 	
