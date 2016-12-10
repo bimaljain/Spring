@@ -1,3 +1,11 @@
+/*
+autowire byType:
+1.) get all the setter methods.
+2.) looks for type (from the arguments) in the setter methods. (and nothing else in the setter method). Class properties also does not matter.
+-- int, String, Address7
+
+If you define 2 beans of same type, autowire byType will fail.
+ */
 package _001;
 
 import org.springframework.context.ApplicationContext;
@@ -11,36 +19,37 @@ public class _015_Autowiring_ByType {
 }
 
 class Person7 {
-	private int id;
-	private String name;
-	private Address7 address;
+	private int id99;
+	private String name99;
+	private Address7 address99;
 	
 	public int getId() {
-		return id;
+		return id99;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.id99 = id;
 	}
 
 	public String getName() {
-		return name;
+		return name99;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name99 = name;
 	}
 
 	public Address7 getAddress() {
-		return address;
+		return address99;
 	}
 
-	public void setAddress(Address7 address) {
-		this.address = address;
+	//name of the setter method does not matter
+	public void setAddress79(Address7 address69) {
+		this.address99 = address69;
 	}
 
 	public String toString(){
-		return id + " : " + name + " : " + address;
+		return id99 + " : " + name99 + " : " + address99;
 	}
 }
 

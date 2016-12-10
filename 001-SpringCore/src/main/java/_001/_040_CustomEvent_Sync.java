@@ -1,8 +1,7 @@
 /*
-In this article, we will look into an example of spring’s ApplicationEvent, to maintain the login history of users. 
-The bean responsible for recording login history will implement ApplicationListener and register itself in the context XML. 
-When a user successfully logs in, an ApplicationEvent will be published.  The login history bean registered will receive the event 
-and add an entry for the logged in user.
+In this article, we will look into an example of spring’s ApplicationEvent, to maintain the login history of users. The bean responsible for recording 
+login history will implement ApplicationListener and register itself in the context XML. When a user successfully logs in, an ApplicationEvent will 
+be published.  The login history bean registered will receive the event and add an entry for the logged in user.
 
 DROP TABLE BJ_USER_DETAILS;
 DROP TABLE BJ_USER_LOGIN_HISTORY;
@@ -30,7 +29,7 @@ START WITH 1
 INCREMENT BY 1
 CACHE 10
 
-insert into bj_user_details values (1, 'admin', 'admin');
+insert into BJ_USER_DETAILS values (1, 'admin', 'admin');
 commit;
 
 select * from BJ_USER_DETAILS;
@@ -58,28 +57,26 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
 
+//uncomment @Component first
 public class _040_CustomEvent_Sync {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("_040_CustomEvent_Sync.xml");
 		String userId = "admin";
 		String password = "admin";
 		LoginManager loginManager = (LoginManager) context.getBean("loginManager");
-		System.out.println("Login userId " + userId);
 		User user = loginManager.login(userId, password);
-
-		System.out.println("Log-in again");
-		loginManager.login(userId, password);
-
-		System.out.println("Login History");
+		//get the login history now
 		LoginHistoryDAO loginHistoryDao = (LoginHistoryDAO) context.getBean("loginHistoryDao");
 		List<LoginHistory> loginHistoryList = loginHistoryDao.findLoginHistory(user);
 		for (LoginHistory loginHistory : loginHistoryList) {
-			System.out.println(loginHistory);
+			System.out.println(Thread.currentThread().getName() + ": "+ loginHistory);
 		}
 	}
 }
 
+//@Component
 class LoginManager implements ApplicationContextAware {
     @Autowired
     private UserDAO userDao;
@@ -127,6 +124,7 @@ class LoginEvent extends ApplicationEvent {
     }
 }
 
+//@Component
 class LoginHistoryListener implements ApplicationListener<LoginEvent> {
     @Autowired
     private LoginHistoryDAO loginHistoryDao;

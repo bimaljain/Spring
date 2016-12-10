@@ -18,12 +18,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
 
 public class _045_ConditionalEvent {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("_045_ConditionalEvent.xml");
 		String userId = "admin";
-		LoginManager45 loginManager = (LoginManager45) context.getBean("loginManager");
+		LoginManager45 loginManager = (LoginManager45) context.getBean("loginManager45");
 		System.out.println("Login userId " + userId);
 		User45 user = loginManager.login(userId, false);
 
@@ -40,6 +41,7 @@ public class _045_ConditionalEvent {
 	}
 }
 
+//@Component
 class LoginManager45 implements ApplicationContextAware {
 	@Autowired
 	private UserDAO45 userDao;
@@ -58,6 +60,7 @@ class LoginManager45 implements ApplicationContextAware {
 	}    
 }
 
+//@Component
 class Listeners45 {
 	@Autowired
 	private LoginHistoryDAO45 loginHistoryDao;

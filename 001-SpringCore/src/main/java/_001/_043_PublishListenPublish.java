@@ -12,9 +12,8 @@ import org.springframework.stereotype.Component;
 public class _043_PublishListenPublish {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("_043_PublishListenPublish.xml");
-		LoginPublisher loginManager = (LoginPublisher) context.getBean("loginPublisher");
-		loginManager.login();
-
+		LoginPublisher loginPublisher = (LoginPublisher) context.getBean("loginPublisher");
+		loginPublisher.login();
 		((AbstractApplicationContext)context).registerShutdownHook();
 	}
 }
@@ -23,11 +22,9 @@ public class _043_PublishListenPublish {
 class LoginPublisher implements ApplicationEventPublisherAware {
 	private ApplicationEventPublisher publisher;
 
-	public User login() {
-		System.out.println("-----------------" +Thread.currentThread().getName()+ ": ASYNC: Publishing successful login event------------");
+	public void login() {
+		System.out.println("publishing first event");
 		publisher.publishEvent(new LoginEvent3(new User3()));
-		System.out.println("-----------------" +Thread.currentThread().getName()+ ": ASYNC: Finished publishing login event--------------\n");
-		return null;
 	}
 
 	public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
@@ -63,7 +60,7 @@ class LoginHistoryListener3{
 	@EventListener
 	public LoginEvent4 onApplicationEvent(LoginEvent3 loginEvent) {
 			System.out.println("inside first listener");	
-			System.out.println("publishing another event");
+			System.out.println("publishing second event");
 			return new LoginEvent4(new User3());
 	}
 }
@@ -72,7 +69,7 @@ class LoginHistoryListener3{
 class LoginHistoryListener4 {
 
 	@EventListener
-	public void onApplicationEvent(LoginEvent3 loginEvent) {
+	public void onApplicationEvent(LoginEvent4 loginEvent) {
 			System.out.println("inside second listener");
 	}
 }

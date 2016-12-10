@@ -9,7 +9,7 @@ public class _006_MethodInjection_Context {
 	public static void main(String[] args){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("_006_MethodInjection_Context.xml");
 		for (int i=0; i<3 ; i++){
-			Singleton4 singleton = (Singleton4)ctx.getBean("singletonBean");
+			Singleton2 singleton = (Singleton2)ctx.getBean("singletonBean");
 			System.out.println(singleton.getPrototype().getUrl());
 		}
 	}

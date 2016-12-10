@@ -7,9 +7,10 @@
  http://www.springframework.org/schema/context
  http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<bean id="pizzaShop" class="_001.PizzaShop">
-		<replaced-method name="getPizza" replacer="pizzaReplacer" />
+	<bean id="singleton" class="_001.Singleton5">
+		<constructor-arg ref="prototype"/>
+		<replaced-method name="getPrototype" replacer="replacer" />
 	</bean>
-	<bean id="pizzaReplacer" class="_001.MethodReplacerImpl" scope="prototype"/>
-	
+	<bean id="replacer" class="_001.MethodReplacerImpl" scope="prototype"/>
+	<bean id="prototype" class="_001.Prototype" />
 </beans>

@@ -14,9 +14,11 @@ public class _018_AutowiredByConstructor {
 	
 	private Address9 address;
 
+	//@Autowired fails by Type since there are 2 beans of Address9 type. Next it checks for qualifier, but there is none. So finally it autowires 
+	//byName (spring bean with name address2). We don't care about property name.
 	@Autowired 
-	public _018_AutowiredByConstructor(Address9 address){
-		this.address=address;
+	public _018_AutowiredByConstructor(Address9 address2){
+		this.address=address2;
 	}
 	
 	public String toString(){

@@ -10,8 +10,8 @@ public class _007_MethodInjection_Replacer {
 	public static void main(String[] args){
 		ApplicationContext factory = new ClassPathXmlApplicationContext("_007_MethodInjection_Replacer.xml");
 		for (int i=0;i<3;i++){
-			PizzaShop pizzaShop = (PizzaShop)factory.getBean("pizzaShop");
-			System.out.println(pizzaShop.getPizza());
+			Singleton5 singleton = (Singleton5)factory.getBean("singleton");
+			System.out.println(singleton.getPrototype().getUrl());
 		}
 	}
 }
@@ -23,17 +23,18 @@ class MethodReplacerImpl implements MethodReplacer{
 	}
 
 	public Object reimplement(Object arg0, Method arg1, Object[] arg2) throws Throwable {
-		return "Replacing the pizza";
+		return new Prototype();
 	}
 }
 
-class PizzaShop {
+class Singleton5 {
+	Prototype prototype;
 	
-	public PizzaShop(){
-		System.out.println("PizzaShop is created");
+	public Singleton5(Prototype prototype){
+		this.prototype=prototype;
 	}
 	
-	public String getPizza(){
-		return "Bought a pizza";
+	public Prototype getPrototype(){
+		return prototype;
 	}
 }

@@ -1,6 +1,7 @@
 /*
-
+-----------
 Autowiring:
+-----------
 The Spring container can autowire relationships between collaborating beans without using <constructor-arg> and <property> elements which helps cut 
 down on the amount of XML configuration you write for a big Spring based application.
 
@@ -9,10 +10,10 @@ attribute of the <bean/> element to specify autowire mode for a bean definition.
 
 1. no: This is default setting which means no autowiring and you should use explicit bean reference for wiring.
 
-2. byName: Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then 
-tries to match and wire its properties with the beans defined by the same names in the configuration file. The requirement is that the name of the 
-member variables of the bean must match one bean id defined in the xml. If matches are found, it will inject those beans otherwise, it will throw 
-exceptions.
+2. byName: Spring container looks at the properties (actually setter methods) of the beans on which autowire attribute is set to byName in the XML 
+configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file. The 
+requirement is that the name of the member variables of the bean must match one bean id defined in the xml. If matches are found, it will inject 
+those beans otherwise, it will throw exceptions.
 
 3. byType: Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then 
 tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, 
@@ -30,7 +31,7 @@ but you should consider the limitations/disadvantages of autowiring before using
 
 1. Overriding possibility: You can still specify dependencies using <constructor-arg> and <property> settings which will always override autowiring.
 
-2.Primitive data types: You cannot autowire simple properties such as primitives, Strings, and Classes.
+2. Primitive data types: You cannot autowire simple properties such as primitives, Strings, and Classes.
 
 3. Confusing nature: Autowiring is less exact than explicit wiring, so if possible prefer using explict wiring.
 
@@ -50,36 +51,44 @@ public class _014_Autowiring_ByName {
 }
 
 class Person6 {
-	private int id;
-	private String name;
+	/*autowire byName: 
+	 1.) get all the setter methods.
+	 2.) look for the setter method name (and nothing else in the setter method) Class properties also does not matter.
+	 -- id, name, address69
+	  
+	 In this example, property name is id1, but setter method is setId().
+	*/
+	private int id1;
+	private String name1;
 	private Address6 address1;
 	
 	public int getId() {
-		return id;
+		return id1;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.id1 = id;
 	}
 
 	public String getName() {
-		return name;
+		return name1;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.name1 = name;
 	}
 
-	public Address6 getAddress1() {
+	public Address6 getAddress() {
 		return address1;
 	}
 
-	public void setAddress1(Address6 address) {
-		this.address1 = address;
+	//setter method name matters
+	public void setAddress69(Address6 address1) {
+		this.address1 = address1;
 	}
 
 	public String toString(){
-		return id + " : " + name + " : " + address1;
+		return id1 + " : " + name1 + " : " + address1;
 	}
 }
 

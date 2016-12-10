@@ -3,7 +3,7 @@
 and service requests for those beans at runtime.
 
 @Bean:  @Bean annotation tells Spring that a method annotated with @Bean will return an object that should be registered as a bean in the Spring 
-application context. 
+application context. Bean name is same as the method name, else you can override it by using "name" attribute of @Bean. 
 
  */
 package _001;
@@ -21,7 +21,7 @@ public class _026_ConfigurationInJava {
 		Person10 p = (Person10)ctx.getBean("person");
 		System.out.println(p);
 
-		Person10 p2 = (Person10)ctx.getBean("person2");
+		Person10 p2 = (Person10)ctx.getBean("person99");
 		System.out.println(p2);
 	}
 }
@@ -35,12 +35,15 @@ class JavaConfig {
 		return new Address10("Fremont St","Fremont",94538);
 	}	
 	
-	@Bean(name="person", initMethod = "init", destroyMethod = "destroy" )
+	@Bean(initMethod = "init", destroyMethod = "destroy" )
 	public Person10 person(){
 		return new Person10(address());
 	}
 	
-	@Bean(name="person2", autowire=Autowire.BY_NAME, initMethod = "init", destroyMethod = "destroy" )
+	//Person class has one setter method with name-address.
+	//there is a bean registered with this name-address.
+	//so Autowire.BY_NAME will work. lly, Autowire.BY_TYPE will also work here.
+	@Bean(name="person99", autowire=Autowire.BY_NAME, initMethod = "init", destroyMethod = "destroy" )
 	public Person10 person2(){
 		return new Person10();
 	}
@@ -62,11 +65,9 @@ class Person10 {
 		return address;
 	}
 
-
 	public void setAddress(Address10 address) {
 		this.address = address;
 	}
-
 
 	public String toString(){
 		return address.toString();

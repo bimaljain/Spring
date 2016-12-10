@@ -1,30 +1,3 @@
-/*
-
-Setter-based DI
-Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static 
-factory method to instantiate your bean.
-
-If you have many setter methods then it is convenient to use p-namespace in the XML configuration file.
-
-Setter Dependency Injection(SDI) vs Constructor Dependency Injection(CDI)
-The way we Inject
-SDI usually happens after the object gets created by the container and by using the setter methods
-Whereas CDI happens during the object creation by the container by passing dependencies as a parameter to the constructor.
-
-Complete dependency injection vs Partial dependency injection
-Since CDI happens during constructor execution, we need to pass all the necessary parameters to that constructor, so complete dependency injection is 
-mandatory Whereas SDI happens after constructor gets executed , so we can do either partial dependency injection or complete dependency injection 
-based on the requirement.
-
-Readability
-If we look at the readability of dependencies, we can prefer SDI, as in SDI we can see which property we are injecting based on the setter method 
-and property tag.
-
-Overriding injected value
-If we use both CDI and SDI , Spring container will override the CDI by SDI.
-It means , if we define both SDI and CDI on the same attributes, then SDI value will be injected to that attribute by spring container.
-
- */
 package _001;
 
 import java.util.List;
@@ -46,9 +19,11 @@ public class _003_SetterInjection_Collection {
 }
 
 class Person3 {
-	private List<String> languages;
-	private List<Address3> address;
-	private List<Long> phone;
+	//Setter DI only need to know about setter methods. (and not the property names)
+	//below, properties has a different names than their setter methods. But setter DI still works.
+	private List<String> languages1;
+	private List<Address3> address1;
+	private List<Long> phone1;
 	
 	private Map<String,String> QnA1;
 	private Map<Long,Long> phone2;
@@ -67,9 +42,9 @@ class Person3 {
 	private Properties  address5;
 
 	public String toString(){
-		return  "LIST>" + languages + " \n " 
-				+ address + " \n " 
-				+ phone + " \n " 
+		return  "LIST>" + languages1 + " \n " 
+				+ address1 + " \n " 
+				+ phone1 + " \n " 
 				+"MAP>"+ QnA1 + " \n " 
 				+ phone2 + "\n"
 				+ QnA  + " \n " 
@@ -86,27 +61,27 @@ class Person3 {
 	}
 
 	public List<String> getLanguages() {
-		return languages;
+		return languages1;
 	}
 
 	public void setLanguages(List<String> languages) {
-		this.languages = languages;
+		this.languages1 = languages;
 	}
 
 	public List<Address3> getAddress() {
-		return address;
+		return address1;
 	}
 
 	public void setAddress(List<Address3> address) {
-		this.address = address;
+		this.address1 = address;
 	}
 
 	public List<Long> getPhone() {
-		return phone;
+		return phone1;
 	}
 
 	public void setPhone(List<Long> phone) {
-		this.phone = phone;
+		this.phone1 = phone;
 	}
 
 	public Map<String, String> getQnA1() {

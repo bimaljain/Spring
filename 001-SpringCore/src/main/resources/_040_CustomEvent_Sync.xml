@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:annotation-config />
+	<context:component-scan base-package="_001" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -26,8 +26,4 @@
 	<bean id="loginHistoryDao" class="_001.LoginHistoryDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-	<bean id="loginManager" class="_001.LoginManager" />
-
-	<bean id="loginHistoryListener" class="_001.LoginHistoryListener" />
-
 </beans>

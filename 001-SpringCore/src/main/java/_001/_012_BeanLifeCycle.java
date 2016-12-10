@@ -3,7 +3,7 @@
 Spring Bean Life Cycle:
 -----------------------
 The most important feature of Spring is the bean based approach.  The Spring bean is created, managed and dispensed by the Spring IoC container. 
-Each Spring bean has a  lifecycle and understanding the spring bean lifecycle enables better coding.
+Each Spring bean has a lifecycle and understanding the spring bean lifecycle enables better coding.
 Life of traditional java objects starts on calling new operator which instantiates the object and finalize() method is getting called when the object 
 is eligible for garbage collection. Life cycle of Spring beans are different as compared to traditional java objects. 
 The life cycle of a Spring bean is very easy to understand. When a bean is instantiated, it may be required to perform some initialization to get 
@@ -13,30 +13,34 @@ in a bean’s lifecycle.
 
 1) Spring container looks for the definition of the bean in the spring configuration xml file
 
-2) Spring instantiate the bean by calling no argument default constructor of that class. If there is only parameterized constructor in the class , 
+2) [Factory Post Processor is called]
+
+3) Spring instantiate the bean by calling no argument default constructor of that class. If there is only parameterized constructor in the class , 
 then bean must be defined in spring xml file with constructor injection using which container will instantiate the bean otherwise it will throw bean 
 creation exception.
 
-3) Spring injects the values and references if any into bean’s properties.
+4) Spring injects the values and references if any into bean’s properties.
 
-4) If the bean implements BeanNameAware interface, Spring passes the bean’s ID to the setBeanName () method and executes this method.
+5) If the bean implements BeanNameAware interface, Spring passes the bean’s ID to the setBeanName () method and executes this method.
 
-5) If the bean implements BeanFactoryAware interface, Spring calls the setBeanFactory () method, passing in the bean factory itself and executes 
+6) If the bean implements BeanFactoryAware interface, Spring calls the setBeanFactory () method, passing in the bean factory itself and executes 
 this method.
 
-6) If the bean implements ApplicationContextAware interface, Spring will call the setApplicationContext () method, passing in a reference to the 
+7) If the bean implements ApplicationContextAware interface, Spring will call the setApplicationContext () method, passing in a reference to the 
 current application context and executes this method.
 
-7) If the bean implements the BeanPostProcessor interface, Spring calls their postProcessBeforeInitialization () method
+8) [At this point, Spring will also inject message source, resource loader and event publisher]
 
-8)If the bean implements the InitializingBean interface, Spring calls afterPropertiesSet() method after all the properties of that bean are set.
+9) If the bean implements the BeanPostProcessor interface, Spring calls their postProcessBeforeInitialization () method
+
+10)If the bean implements the InitializingBean interface, Spring calls afterPropertiesSet() method after all the properties of that bean are set.
 Similarly, if the bean is declared with an init-method, then the specified initialization method will be called
 
-9) If the bean implements BeanPostProcessor, Spring will call their postProcessAfterInitialization() method.
+11) If the bean implements BeanPostProcessor, Spring will call their postProcessAfterInitialization() method.
 
-10) At this point, the bean is ready to be used by the application and will remain in the application context until the application context is destroyed.
+12) At this point, the bean is ready to be used by the application and will remain in the application context until the application context is destroyed.
 
-11) If the bean implements the DisposableBean interface, then Spring will call the destroy() method. Likewise, if any bean was declared with a 
+13) If the bean implements the DisposableBean interface, then Spring will call the destroy() method. Likewise, if any bean was declared with a 
 destroy-method, then the specified method will be called.
 
 -------------------------------------------------------
@@ -53,8 +57,6 @@ is destroyed and can be used to add any cleanup related code. Any bean implement
 method. Signature of method is : 
 
 void destroy() throws Exception; 
-
-This approach is simple to use but it’s not recommended because it will create tight coupling with the Spring framework in our bean implementations.
 
 ---------------------------------------------------------------
 Custom init() and destroy() methods in bean configuration file:
@@ -92,15 +94,9 @@ BeanPostProcessor is used to perform some operations before and after creating a
 BeanPostProcessor is applicable for all the beans, which means its methods will be executed for each bean we define in the xml.
 We can use the BeanPostProcessor to execute some logic for all the beans in the application context before and after their initialization
 BeanPostProcessor interface has 2 methods postProcessBeforeInitialization() and postProcessAfterInitialization() where former is called after the bean 
-is created and before it is initialized And the latter is called after the bean initialization
+is created and before it is initialized And the latter is called after the bean initialization.
 You can configure multiple BeanPostProcessor interfaces and you can control the order in which these BeanPostProcessor interfaces execute by setting 
 the order property provided the BeanPostProcessor implements the Ordered interface.
-
--------------
-shutdownhook:
--------------
-In a non-web or non-enterprise application, inorder to close the context, we have to register shutdownhook using AbstartApplicationContext class. 
-This will ensures a graceful shutdown and calls the relevant destroy methods. 
 
 ----------------------------------
 Spring Aware Interfaces for beans:

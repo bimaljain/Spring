@@ -12,17 +12,12 @@ public class _041_CustomEvent_Async {
 		String userId = "admin";
 		String password = "admin";
 		LoginManager loginManager = (LoginManager) context.getBean("loginManager");
-		System.out.println("Login userId " + userId);
 		User user = loginManager.login(userId, password);
 
-		System.out.println("Log-in again");
-		loginManager.login(userId, password);
-
-		System.out.println("Login History");
 		LoginHistoryDAO loginHistoryDao = (LoginHistoryDAO) context.getBean("loginHistoryDao");
 		List<LoginHistory> loginHistoryList = loginHistoryDao.findLoginHistory(user);
 		for (LoginHistory loginHistory : loginHistoryList) {
-			System.out.println(loginHistory);
+			System.out.println(Thread.currentThread().getName()+ ": " + loginHistory);
 		}
 		((AbstractApplicationContext)context).registerShutdownHook();
 	}

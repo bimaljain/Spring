@@ -9,7 +9,7 @@
 	<context:annotation-config/>
 	<bean id="student" class="_001.Student2">
 		<property name="age" value="50" />
-		<property name="name" value="bimal"/> <!-- try to comment this line and run -->
+		<!-- <property name="name" value="bimal"/>  -->
 	</bean>
 
 </beans>

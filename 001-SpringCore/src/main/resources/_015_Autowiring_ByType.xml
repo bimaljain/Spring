@@ -11,14 +11,12 @@
 		<property name="name" value="bimal" />
 	</bean>
 
-	<bean id="address" class="_001.Address7">
+	<bean id="address420" class="_001.Address7">
 		<constructor-arg index="0" value="Fremont Blvd" />
 		<constructor-arg index="1" value="Fremont" />
 		<constructor-arg index="2" value="94538" />
 	</bean>
 <!-- 
-If you define 2 beans of same type, autowire byType will fail
-
 	<bean id="address1" class="bytype.Address">
 		<constructor-arg index="0" value="Leslie St" />
 		<constructor-arg index="1" value="Fremont" />

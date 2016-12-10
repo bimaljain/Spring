@@ -12,8 +12,10 @@ public class _019_AutowiredByProperties {
 		System.out.println((_019_AutowiredByProperties)ctx.getBean("_019_AutowiredByProperties"));
 	}
 	
+	//@Autowired fails by Type since there are 2 beans of Address9 type. Next it checks for qualifier, but there is none. So finally it autowires 
+	//byName (spring bean with name address2). Also we don't need any setter method.
 	@Autowired
-	private Address9 address;
+	private Address9 address2;
 
 	//Autowiring on property need a default constructor, otherwise you get below error
 	//Failed to instantiate: No default constructor found
@@ -22,6 +24,6 @@ public class _019_AutowiredByProperties {
 	}	
 
 	public String toString(){
-		return address.toString();
+		return address2.toString();
 	}
 }

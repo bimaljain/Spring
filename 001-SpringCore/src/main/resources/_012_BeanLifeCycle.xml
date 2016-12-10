@@ -16,6 +16,7 @@
 
 	<bean id="beanB" class="_001.B2" />
 	
+	<!-- called once at the beginning -->
 	<bean class="_001.FactoryPostProcessorImpl"/>	
 	
 	<!-- below post processor are applied to all spring beans -->	

@@ -11,15 +11,11 @@
 		<constructor-arg index="1" value="bimal" />
 	</bean>
 
-<!-- autowire="constructor"
-will check for type first. If the container cannot resolve by type, it will try to resolve by name.
-If the container cannot resolve by name also, an exception will be thrown.
- -->
-<!-- 	<bean id="address" class="constructor.Address"> -->
-<!-- 		<constructor-arg index="0" value="Fremont Blvd-2" /> -->
-<!-- 		<constructor-arg index="1" value="Fremont-2" /> -->
-<!-- 		<constructor-arg index="2" value="94538" /> -->
-<!-- 	</bean> -->
+	<bean id="address" class="_001.Address8">
+		<constructor-arg index="0" value="Fremont Blvd-2" />
+		<constructor-arg index="1" value="Fremont-2" />
+		<constructor-arg index="2" value="94538" />
+	</bean>
 
 	<bean id="address2" class="_001.Address8">
 		<constructor-arg index="0" value="Leslie St" />

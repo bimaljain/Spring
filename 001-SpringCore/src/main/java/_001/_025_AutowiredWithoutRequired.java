@@ -22,8 +22,10 @@ public class _025_AutowiredWithoutRequired {
 
 //@Component //uncomment this first
 class Student3 {
-	@Autowired(required=false) // autowiring for age will never happen
+	
+	@Autowired(required=false) // age is not configured but this will not throw any exception
 	private Integer age;
+	
 	@Autowired
 	@Value("Bimal") // required=true. If you don't supply a string, autowiring will fail.
 	private String name;

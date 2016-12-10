@@ -11,13 +11,13 @@
 		<property name="name" value="bimal" />
 	</bean>
 
-	<bean id="address" class="_001.Address6">
+	<bean id="address69" class="_001.Address6">
 		<constructor-arg index="0" value="Fremont Blvd" />
 		<constructor-arg index="1" value="Fremont" />
 		<constructor-arg index="2" value="94538" />
 	</bean>
 
-	<bean id="address1" class="_001.Address6">
+	<bean id="address99" class="_001.Address6">
 		<constructor-arg index="0" value="Leslie Street" />
 		<constructor-arg index="1" value="Fremont" />
 		<constructor-arg index="2" value="94538" />

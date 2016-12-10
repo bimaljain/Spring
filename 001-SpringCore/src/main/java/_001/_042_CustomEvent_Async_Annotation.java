@@ -22,13 +22,14 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 
 public class _042_CustomEvent_Async_Annotation {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("_042_CustomEvent_Async_Annotation.xml");
 		String userId = "admin";
 		String password = "admin";
-		LoginManager2 loginManager = (LoginManager2) context.getBean("loginManager");
+		LoginManager2 loginManager = (LoginManager2) context.getBean("loginManager2");
 		System.out.println("Login userId " + userId);
 		User2 user = loginManager.login(userId, password);
 
@@ -45,6 +46,7 @@ public class _042_CustomEvent_Async_Annotation {
 	}
 }
 
+//@Component
 class LoginManager2 implements ApplicationContextAware {
 	@Autowired
 	private UserDAO2 userDao;
@@ -63,6 +65,7 @@ class LoginManager2 implements ApplicationContextAware {
 	}    
 }
 
+//@Component
 class Listeners {
     @Autowired
     private LoginHistoryDAO2 loginHistoryDao;

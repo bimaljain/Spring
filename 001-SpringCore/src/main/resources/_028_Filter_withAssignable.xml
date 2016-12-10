@@ -9,6 +9,6 @@
 
 	<context:component-scan base-package="_001">
 		<context:include-filter type="assignable" expression="_001.IService" />
-		<context:exclude-filter type="assignable" expression="_001.IUtil" />
+		<context:include-filter type="assignable" expression="_001.IUtil" />
 	</context:component-scan>
 </beans> 

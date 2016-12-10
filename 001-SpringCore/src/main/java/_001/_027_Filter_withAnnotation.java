@@ -1,4 +1,6 @@
 /*
+<context:component-scan> only scans @component. What if you want Spring to scan something else as well.
+
 include-filter:
 Controls which eligible types to include for component scanning. Note that these filters will be applied in addition to the default filters, if 
 specified. Any type under the specified base packages which matches a given filter will be included, even if it does not match the default 
@@ -60,6 +62,7 @@ class Service {
 	}
 }
 
+//this will be excluded, even though @Repository is annotated with @Component
 @Repository
 class Util {
 	public void doSomethingUtil(){
@@ -67,6 +70,7 @@ class Util {
 	}
 }
 
+//this is not annotated at all, so this will be excluded as well.
 class DAO {
 	public void doSomethingDAO(){
 		System.out.println("DAO is doing something");

@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
-	<context:annotation-config />
+	<context:component-scan base-package="_001" />
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
@@ -26,15 +26,13 @@
 	<bean id="loginHistoryDao" class="_001.LoginHistoryDAO2">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-	<bean id="loginManager" class="_001.LoginManager2" />
 	
-	<bean id="listeners" class="_001.Listeners" />
+	<task:annotation-driven />
 <!-- 
 	<bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster">
 		<property name="taskExecutor">
 			<bean class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
 		</property>
 	</bean>
-	-->
-	<task:annotation-driven />
+	-->	
 </beans>
