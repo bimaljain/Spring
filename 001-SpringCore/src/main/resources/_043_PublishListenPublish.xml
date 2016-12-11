@@ -8,5 +8,4 @@
 
 	<context:component-scan base-package="_001" />
 
-
 </beans>

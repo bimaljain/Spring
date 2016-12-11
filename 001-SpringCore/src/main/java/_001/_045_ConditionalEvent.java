@@ -82,13 +82,12 @@ class Listeners45 {
 class LoginHistoryDAO45 extends JdbcDaoSupport {
     public void recordLoginHistory(User45 user) {
         System.out.println("Add entry to login history for " + user.getUserId());
-		List<Map<String, Object>> i = getJdbcTemplate().queryForList("select BJ_SEQUENCE.nextval from dual");
-        getJdbcTemplate().update("insert into bj_user_login_history(id,status, session_id, login_time, user_id) values(?,?, ?, ?, ?)",
-        		i.iterator().next().get("NEXTVAL"),"SUCCESS", user.getSessionId(), user.getLoginTime(), user.getId());
+        getJdbcTemplate().update("insert into user_login_history(status, session_id, login_time, user_id) values(?, ?, ?, ?)",
+        		"SUCCESS", user.getSessionId(), user.getLoginTime(), user.getId());
     }
      
     public List<LoginHistory45> findLoginHistory(final User45 user) {
-        return getJdbcTemplate().query("select id, status, login_time, session_id from bj_user_login_history where user_id=?", 
+        return getJdbcTemplate().query("select id, status, login_time, session_id from user_login_history where user_id=?", 
                 new Object[]{user.getId()}, 
                 new RowMapper<LoginHistory45>(){
  
@@ -107,7 +106,7 @@ class LoginHistoryDAO45 extends JdbcDaoSupport {
 class UserDAO45 extends JdbcDaoSupport {
 	
 	public User45 findUser(String userId, final boolean importantUser) {
-		return getJdbcTemplate().query("select id, user_id, password from bj_user_details where user_id=?",
+		return getJdbcTemplate().query("select id, user_id, password from user_details where user_id=?",
 				new Object[] { userId },
 				new ResultSetExtractor<User45>() {
 			public User45 extractData(ResultSet rs) throws SQLException, DataAccessException {

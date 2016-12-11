@@ -101,7 +101,7 @@ class LoginManager implements ApplicationContextAware {
 class UserDAO extends JdbcDaoSupport {
 	
 	public User findUser(String userId) {
-		return getJdbcTemplate().query("select id, user_id, password from bj_user_details where user_id=?",
+		return getJdbcTemplate().query("select id, user_id, password from user_details where user_id=?",
 				new Object[] { userId },
 				new ResultSetExtractor<User>() {
 			public User extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -143,13 +143,12 @@ class LoginHistoryDAO extends JdbcDaoSupport {
     public void recordLoginHistory(LoginEvent loginEvent) {
         User user = loginEvent.getUser();
         System.out.println("Add entry to login history for " + user.getUserId());
-		List<Map<String, Object>> i = getJdbcTemplate().queryForList("select BJ_SEQUENCE.nextval from dual");
-        getJdbcTemplate().update("insert into bj_user_login_history(id,status, session_id, login_time, user_id) values(?,?, ?, ?, ?)",
-        		i.iterator().next().get("NEXTVAL"),"SUCCESS", user.getSessionId(), user.getLoginTime(), user.getId());
+        getJdbcTemplate().update("insert into user_login_history(status, session_id, login_time, user_id) values(?, ?, ?, ?)",
+        		"SUCCESS", user.getSessionId(), user.getLoginTime(), user.getId());
     }
      
     public List<LoginHistory> findLoginHistory(final User user) {
-        return getJdbcTemplate().query("select id, status, login_time, session_id from bj_user_login_history where user_id=?", 
+        return getJdbcTemplate().query("select id, status, login_time, session_id from user_login_history where user_id=?", 
                 new Object[]{user.getId()}, 
                 new RowMapper<LoginHistory>(){
  

@@ -5,11 +5,7 @@ have completed successfully. If there was any transactional context, then all ou
 be necessary that we need an asynchronous kind of flow. The Container publishes the event and simply moves on. It does not wait for the listener 
 methods to complete execution. This can be achieved by the SimpleApplicationEventMulticaster class.
 
-Hence Spring provides us with an alternative strategy:
-
-
-
-
+Check xml for more details...
  */
 package _001;
 
