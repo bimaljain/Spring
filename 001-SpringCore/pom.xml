@@ -16,11 +16,11 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>4.2.8.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc14</artifactId>
-			<version>10.2.0.2.0</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.oracle</groupId> -->
+<!-- 			<artifactId>ojdbc14</artifactId> -->
+<!-- 			<version>10.2.0.2.0</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
