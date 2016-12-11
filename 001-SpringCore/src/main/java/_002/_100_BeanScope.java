@@ -22,6 +22,12 @@ the same singleton bean for every request or reference of the named bean.
 means one instance per spring container. And we can have muliple spring container inside a JVM.
 3. If we have a singleton bean which refers to prototype beans, all the dependencies of the singleton will still be satisfied when the singleton 
 is created (or context is initialized) and they will not change with every request & reference.
+4. The lifecycle of beans is generally managed by the Spring container. But, when a bean is a prototype, Spring does not handle the destruction of 
+the beans. means Spring does not call the destruction callback methods of prototype beans. we must write explicit code to clean up any prototype 
+beans. As Per the Spring documentation, “the Spring container’s role in regard to a prototype-scoped bean is a replacement for the Java new operator.
+All lifecycle management past that point must be handled by the client.” This means Spring does not call destroy() or customDestroy() for prototype 
+beans. However if a prototype is dependent on singleton bean, destroy() or customDestroy() of singleton will still be called.
+
  */
 
 package _002;
@@ -32,9 +38,9 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-public class _105_BeanScope {
+public class _100_BeanScope {
 	public static void main(String[] args){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_105_BeanScope.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_100_BeanScope.xml");
 		System.out.println((Singleton)ctx.getBean("singleton") == (Singleton)ctx.getBean("singleton"));
 		System.out.println((Prototype)ctx.getBean("prototype") == (Prototype)ctx.getBean("prototype"));
 		((AbstractApplicationContext)ctx).registerShutdownHook();

@@ -38,13 +38,14 @@ public class _023_Autowired_AnyMethod {
 
 /*
 CONCLUSION:
-1.) Constructor DI: looks at the constructor's params
+1.) Constructor DI: looks at the constructor's parameter list
 2.) Setter DI: looks at the names of ALL setter methods
 3.) Autowiring byName: looks at the names of ALL setter methods
-4.) Autowiring byType: looks at the type of argument in the setter methods
-5.) Autowiring byConstructor: looks at the constructor's arg list. And then first check byType and later byName
-6.) Autowired Property: byType --> Qualifier --> byName of the property
-7.) Autowired Constructor: byType --> Qualifier --> byName of constructor args list
-8.) Autowired Setter: byType --> Qualifier --> byName  of setter args list
-9.) Autowired on any method: byType --> Qualifier --> byName  of method args list
+4.) Autowiring byType: looks at the type of argument in the setter args list
+5.) Autowiring byConstructor: looks at the constructor's arg list. First check byType and later byName
+6.) JavaConfig: @Bean create bean with method name.
+7.) Autowired Property: byType --> Qualifier --> byName of the property
+8.) Autowired Constructor: byType --> Qualifier --> byName of constructor args list
+9.) Autowired Setter: byType --> Qualifier --> byName  of setter args list
+10.) Autowired on any method: byType --> Qualifier --> byName  of method args list
  */

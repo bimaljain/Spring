@@ -32,14 +32,3 @@ public class _022_AutowiredBySetterMethod {
 	}
 }
 
-/*
-CONCLUSION:
-1.) Constructor DI: looks at the constructor's params
-2.) Setter DI: looks at the names of ALL setter methods
-3.) Autowiring byName: looks at the names of ALL setter methods
-4.) Autowiring byType: looks at the type of argument in the setter methods
-5.) Autowiring byConstructor: looks at the constructor's arg list. And then first check byType and later byName
-6.) Autowired Property: byType --> Qualifier --> byName of the property
-7.) Autowired Constructor: byType --> Qualifier --> byName of constructor args list
-8.) Autowired Setter: byType --> Qualifier --> byName  of setter args list
- */

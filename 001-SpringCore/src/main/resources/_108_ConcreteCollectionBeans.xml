@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="person" class="_002.Person108">
+		<property name="listAddress">
+			<bean class="org.springframework.beans.factory.config.ListFactoryBean">
+				<property name="targetListClass">
+					<value>java.util.ArrayList</value>
+				</property>
+				<property name="sourceList">
+					<list>
+						<ref bean="address1" />
+						<ref bean="address2" />
+					</list>
+				</property>
+			</bean>
+		</property>
+
+		<property name="address">
+			<bean class="org.springframework.beans.factory.config.SetFactoryBean">
+				<property name="targetSetClass">
+					<value>java.util.HashSet</value>
+				</property>
+				<property name="sourceSet">
+					<set>
+						<ref bean="address1" />
+						<ref bean="address2" />
+					</set>
+				</property>
+			</bean>
+		</property>
+
+		<property name="mapAddress">
+			<bean class="org.springframework.beans.factory.config.MapFactoryBean">
+				<property name="targetMapClass">
+					<value>java.util.HashMap</value>
+				</property>
+				<property name="sourceMap">
+					<map>
+						<entry key="address1" value-ref="address1"></entry>
+						<entry key="address2" value-ref="address2"></entry>
+					</map>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="address1" class="_002.Address">
+		<property name="streetName" value="Fremont Blvd" />
+		<property name="city" value="Fremont" />
+		<property name="zip" value="94538" />
+	</bean>
+	<bean id="address2" class="_002.Address">
+		<property name="streetName" value="Leslie St" />
+		<property name="city" value="Fremont" />
+		<property name="zip" value="94538" />
+	</bean>
+</beans>

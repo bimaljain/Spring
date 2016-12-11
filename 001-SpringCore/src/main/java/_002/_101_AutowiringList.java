@@ -18,7 +18,7 @@ public class _101_AutowiringList {
 	}
 }
 
-@Component
+//@Component
 class ListInjection {
 
 	@Autowired
@@ -38,14 +38,14 @@ interface Car {
 	public void getCar();
 }
 
-@Component
+//@Component
 class Toyota implements Car {
 	public void getCar(){
 		System.out.println("My Toyota");
 	}
 }
 
-@Component
+//@Component
 class Volkswagen implements Car {
 	public void getCar(){
 		System.out.println("My Volkswagen");
