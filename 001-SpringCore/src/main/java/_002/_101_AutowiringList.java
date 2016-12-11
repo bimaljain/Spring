@@ -7,9 +7,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
-public class AutowiringList {
+public class _101_AutowiringList {
 	public static void main(String[] args){
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("AutowiringList.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_101_AutowiringList.xml");
 		ListInjection x = (ListInjection)ctx.getBean("listInjection");
 		List<Car> list = x.getCars();
 		for (Car car:list){
@@ -33,7 +33,6 @@ class ListInjection {
 	}
 	
 }
-
 
 interface Car {
 	public void getCar();

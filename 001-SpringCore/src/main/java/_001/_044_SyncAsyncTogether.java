@@ -32,6 +32,7 @@ public class _044_SyncAsyncTogether {
 @interface AsyncListener {
 } 
 
+// To achieve this, we need to provide our own implementation of the ApplicationEventMulticaster
 class DistributiveEventMulticaster implements ApplicationEventMulticaster {
     private ApplicationEventMulticaster asyncEventMulticaster;
     private ApplicationEventMulticaster syncEventMulticaster;

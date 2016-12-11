@@ -25,6 +25,12 @@ beans name in configuration file. If matches are found, it will inject those bea
 
 5. autodetect: Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
 
+
+Autowiring all beans in config files with single tag
+If we want to autowire all the beans in the config file by one of the above 4 types, then rather than specifying autowire strategy in each bean 
+we can specify the same in beans tag which will apply it for all the beans.
+
+
 Limitations with autowiring: 
 Explicit wiring is recommended over autowiring. Though, autowiring can significantly reduce the need to specify properties or constructor arguments 
 but you should consider the limitations/disadvantages of autowiring before using them.

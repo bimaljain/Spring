@@ -1,3 +1,6 @@
+/*
+Bean implementing MessageSourceAware interface can get the access to message source object which is used to achieve internationalization
+ */
 package _001;
 
 import java.util.Locale;

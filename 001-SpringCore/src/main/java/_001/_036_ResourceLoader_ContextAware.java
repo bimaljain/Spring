@@ -1,3 +1,6 @@
+/*
+Bean implementing ResourceLoaderAware interface can load the resources from the classpath or any external file.
+ */
 package _001;
 
 import java.io.BufferedReader;

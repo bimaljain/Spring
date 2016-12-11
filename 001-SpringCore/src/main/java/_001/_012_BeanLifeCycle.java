@@ -90,9 +90,8 @@ If you want to run some code before bean factory creates all the singletons defi
 ---------------------
 Bean Post Processors:
 ---------------------
-BeanPostProcessor is used to perform some operations before and after creating a bean,this allows us to add some code before and after creating the bean.
+We can use the BeanPostProcessor to execute some logic for all the beans in the application context before and after their initialization.
 BeanPostProcessor is applicable for all the beans, which means its methods will be executed for each bean we define in the xml.
-We can use the BeanPostProcessor to execute some logic for all the beans in the application context before and after their initialization
 BeanPostProcessor interface has 2 methods postProcessBeforeInitialization() and postProcessAfterInitialization() where former is called after the bean 
 is created and before it is initialized And the latter is called after the bean initialization.
 You can configure multiple BeanPostProcessor interfaces and you can control the order in which these BeanPostProcessor interfaces execute by setting 

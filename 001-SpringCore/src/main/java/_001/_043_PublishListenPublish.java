@@ -1,3 +1,10 @@
+/*
+Publishing events in response to
+Another nice thing with @EventListener is the fact that in a situation of non-void return type Spring will automatically publish returned event.
+You can publish an event as a result of handling another event by returning an instance of the new event or a collection of the new events in case 
+you want to publish multiple events.
+ */
+
 package _001;
 
 import org.springframework.context.ApplicationContext;

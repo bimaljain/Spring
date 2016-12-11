@@ -1,3 +1,16 @@
+/*
+Publishing Events asynchronously:
+The default listener that Spring implements is synchronous. The publish method will wait until the onApplicationEvent methods of all the listeners 
+have completed successfully. If there was any transactional context, then all our listener methods would have executed within the same. It may often 
+be necessary that we need an asynchronous kind of flow. The Container publishes the event and simply moves on. It does not wait for the listener 
+methods to complete execution. This can be achieved by the SimpleApplicationEventMulticaster class.
+
+Hence Spring provides us with an alternative strategy:
+
+
+
+
+ */
 package _001;
 
 import java.util.List;

@@ -1,7 +1,8 @@
 /*
+-----------------
 Method Injection:
 -----------------
-Spring container resolves the dependencies at instantiation time which means if any singleton bean has  a dependency of any prototype bean, then a 
+Spring container resolves the dependencies at instantiation time which means if any singleton bean has a dependency of any prototype bean, then a 
 new object of prototype bean will be instantiated and injected in to singleton bean at the time of instantiation of Singleton bean. With this, the 
 same prototype bean will always be supplied from singleton bean. So we need a different approach when a Singleton bean has a dependency on Prototype 
 bean.

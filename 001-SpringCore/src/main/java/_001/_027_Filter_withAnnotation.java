@@ -1,5 +1,17 @@
 /*
-<context:component-scan> only scans @component. What if you want Spring to scan something else as well.
+When we use spring component scan either in JavaConfig or XML configuration, all the classes annotated by @Component, @Service, @Repository and 
+@Controller stereotypes are by default auto detected. Now using spring filter, we can extend the ability of component scan. Using filter we can 
+include those classes to auto detect which are not annotated by stereotype annotations and at the same time we can exclude those classes not to 
+auto detect which are annotated by stereotype annotations. Here we will provide complete example of spring filter to customize component scan.
+
+Component Scan Filter Types:
+----------------------------
+1.) annotation: Component scan of classes can be included and excluded by configuring annotation name applied at class level. 
+2.) assignable: Using interface name or class name that has been implemented or extended by the classes, we can include and exclude classes in 
+component scanning. 
+3.) aspect: Using aspect expression targeting classes names, it can be included and excluded in component scanning. 
+4.) regex: Using regex expression targeting classes names, it can be included and excluded in component scanning. 
+5.) custom: We can also create custom filter type by implementing org.springframework.core.type.TypeFilter.
 
 include-filter:
 Controls which eligible types to include for component scanning. Note that these filters will be applied in addition to the default filters, if 
@@ -8,6 +20,11 @@ filters (i.e. is not annotated with @Component).
 
 exclude-filter:
 Controls which eligible types to exclude for component scanning.
+
+Include vs Exclude Filter priority: first filter inside xml must be include always. If we put exclude first then we will end up with exception.
+This is because include filter tries to take the beans registration but exclude filter overrides the same and exclude those beans from the 
+registration. Hence no bean is registered and hence the exception.
+
  */
 package _001;
 

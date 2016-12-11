@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="baseAddressList" abstract="true">
+		<property name="addresses">
+			<list>
+				<ref bean="permanentAddress"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="person" parent="baseAddressList" class="_002.Person" >
+		<property name="addresses" >
+			<list>
+				<ref bean="presentAddress" />
+			</list>
+		</property>
+		<property name="name" value="Bimal"/>
+		<property name="id" value="99" />
+	</bean>
+	
+	<bean id="person_merged" parent="baseAddressList" class="_002.Person" >
+		<property name="addresses" >
+			<list merge="true">
+				<ref bean="presentAddress" />
+			</list>
+		</property>
+		<property name="name" value="Bimal"/>
+		<property name="id" value="99" />
+	</bean>
+	
+	<bean id="permanentAddress" class="_002.Address">
+		<constructor-arg index="0" value="Tokobari Road" />
+		<constructor-arg index="1" value="Guwahati" />
+		<constructor-arg index="2" value="781001"/>
+	</bean>
+	
+		<bean id="presentAddress" class="_002.Address">
+		<constructor-arg index="0" value="Fremont Blvd" />
+		<constructor-arg index="1" value="Fremont" />
+		<constructor-arg index="2" value="94538"/>
+	</bean>
+
+</beans>

@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+1. Use an implementation of the SimpleApplicationEventMulticaster that supports asynchronous publishing.
+2. Create a bean of the same with id "applicationEventMulticaster"
+3. At start-up, if the ApplicationContext detects this bean, then it uses it for its Event publishing model.
+4. If no ApplicationEventMulticaster is specified Spring creates a SimpleApplicationEventMulticaster.The default behaviour of the class is to 
+publish events synchronously. This is how it worked in our previous post.
+5. However if we specify our own ApplicationEventMulticaster bean with id "applicationEventMulticaster", the ApplicationContext uses our instance. 
+This is what we have done above.
+6. In case of SimpleApplicationEventMulticaster, if we specify our own Executor, then we can make it work in an asynchronous manner. In this case 
+I have specified SimpleAsyncTaskExecutor as the executor to be used. This is a simple thread based executor that provides us with the needed 
+asynchronous behaviour.
+7. Note that this change will be global to the ApplicationContext meaning that all listeners be executed asynchronously. 
+		
+The ApplicationContext inherits from the AbstractApplicationContext. It includes the below method that sets up the applicationEventMulticaster
+protected void initApplicationEventMulticaster() {
+    ConfigurableListableBeanFactory beanFactory = getBeanFactory();
+    if (beanFactory.containsLocalBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME)) {
+        this.applicationEventMulticaster = beanFactory.getBean(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, ApplicationEventMulticaster.class);
+        if (logger.isDebugEnabled()) {
+        	logger.debug("Using ApplicationEventMulticaster [" + this.applicationEventMulticaster + "]");
+        }
+    }
+    else {
+        this.applicationEventMulticaster = new SimpleApplicationEventMulticaster(beanFactory);
+        beanFactory.registerSingleton(APPLICATION_EVENT_MULTICASTER_BEAN_NAME, this.applicationEventMulticaster);
+        if (logger.isDebugEnabled()) {
+        	logger.debug("Unable to locate ApplicationEventMulticaster with name '" +  APPLICATION_EVENT_MULTICASTER_BEAN_NAME +
+            				"': using default [" + this.applicationEventMulticaster + "]");
+        }
+    }
+}
+	
+-->
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -26,10 +59,27 @@
 	<bean id="loginHistoryDao" class="_001.LoginHistoryDAO">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
-
+	
 	<bean id="applicationEventMulticaster" class="org.springframework.context.event.SimpleApplicationEventMulticaster">
 		<property name="taskExecutor">
 			<bean class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
 		</property>
 	</bean>
+<!-- 
+You can also redefine theApplicationEventMulticaster bean with id applicationEventMulticaster configuring it with an asynchronousTaskExecutor in 
+JAVA CLASS as below:
+
+@Configuration
+public class AsynchronousSpringEventsConfig {
+    @Bean(name = "applicationEventMulticaster")
+    public ApplicationEventMulticaster simpleApplicationEventMulticaster() {
+        SimpleApplicationEventMulticaster eventMulticaster 
+          = new SimpleApplicationEventMulticaster();
+         
+        eventMulticaster.setTaskExecutor(new SimpleAsyncTaskExecutor());
+        return eventMulticaster;
+    }
+}
+
+ -->
 </beans>

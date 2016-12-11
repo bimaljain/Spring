@@ -1,3 +1,53 @@
+/*
+Annotation-driven event listener:
+---------------------------------
+To get a notification about an event (both Spring event and custom domain event) a component implementing ApplicationListener with onApplicationEvent 
+has to be created. Starting with Spring 4.2 to be notified about the new event it is enough to annotate a method in any Spring component with 
+@EventListener annotation.
+
+	@EventListener
+	public void blogModified(BlogModifiedEvent blogModifiedEvent) {
+	    externalNotificationSender.blogModified(blogModifiedEvent);
+	}
+
+Under the hood Spring will create an ApplicationListener instance for the event with a type taken from the method argument. There is no limitation 
+on the number of annotated methods in one class – all related event handlers can be grouped into one class.
+
+@EventListener is a core annotation, no extra configuration is needed using Java config. Internally theEventListenerMethodProcessor registers 
+an ApplicationListener instance with the event type inferred from the method signature.
+
+Relaxed ApplicationEvent:
+-------------------------
+Historically ApplicationEventPublisher had only an ability to publish objects which inherited after ApplicationEvent. Starting with Spring 4.2 the 
+interface has been extended to support any object type. In that case the object is wrapped in PayloadApplicationEventand sent through.
+
+	//base class with Blog field - no need to extend `ApplicationEvent`
+	class BaseBlogEvent {}
+	 
+	class BlogModifiedEvent extends BaseBlogEvent {}
+	//somewhere in the code
+	ApplicationEventPublisher publisher = (...);    //injected
+	 
+	publisher.publishEvent(new BlogModifiedEvent(blog)); //just plain instance of the event
+
+Asynchronous event processing:
+------------------------------
+It is also worth to mention that@EventListener can be easily combined with @Async annotation to provide asynchronous event processing. The code in 
+the particular event listener doesn’t block neither the main code execution nor processing by other listeners.
+To make it work it is only required to enable asynchronous method execution in general in your Spring context/application with @EnableAsync or 
+<task:annotation-driven /> in xml.
+
+	@Configuration
+	@EnableAsync
+	public class AppConfig {
+		@Bean
+		public AsyncTask asyncTask() {
+			return new AsyncTask();
+		}
+	}
+
+ */
+
 package _001;
 
 import java.sql.ResultSet;

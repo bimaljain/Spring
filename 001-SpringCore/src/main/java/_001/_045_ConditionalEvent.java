@@ -1,3 +1,9 @@
+/*
+Conditional event handling:
+To make @EventListener even more interesting there is an ability to handle only those events of a given type which fulfill given condition(s) 
+written in SpEL.
+ */
+
 package _001;
 
 import java.sql.ResultSet;

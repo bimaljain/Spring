@@ -115,6 +115,7 @@ class UserDAO extends JdbcDaoSupport {
 class LoginEvent extends ApplicationEvent {
 	private static final long serialVersionUID = 1L;
 
+	//The base class (ApplicationEvent) defines a constructor which takes an object as a parameter.
 	public LoginEvent(User user) {
         super(user);
     }
