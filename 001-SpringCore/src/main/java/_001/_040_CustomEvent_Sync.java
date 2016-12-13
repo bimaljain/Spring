@@ -3,38 +3,32 @@ In this article, we will look into an example of spring’s ApplicationEvent, to m
 login history will implement ApplicationListener and register itself in the context XML. When a user successfully logs in, an ApplicationEvent will 
 be published.  The login history bean registered will receive the event and add an entry for the logged in user.
 
-DROP TABLE BJ_USER_DETAILS;
-DROP TABLE BJ_USER_LOGIN_HISTORY;
- 
-CREATE TABLE BJ_USER_DETAILS (
+CREATE TABLE USER_DETAILS (
   ID INT NOT NULL,
   USER_ID VARCHAR(15) NOT NULL,
   PASSWORD VARCHAR(100) NOT NULL,
   PRIMARY KEY (ID)
 );
  
-CREATE TABLE BJ_USER_LOGIN_HISTORY (
-  ID INT NOT NULL,
+CREATE TABLE USER_LOGIN_HISTORY (
+  ID INT NOT NULL AUTO_INCREMENT,
   STATUS VARCHAR(15) NOT NULL,
-  SESSION_ID INT DEFAULT NULL,
-  LOGIN_TIME TIMESTAMP DEFAULT NULL,
-  LOGOUT_TIME TIMESTAMP DEFAULT NULL,
-  USER_ID INT DEFAULT NULL,
+  SESSION_ID LONG NULL,
+  LOGIN_TIME TIMESTAMP,
+  LOGOUT_TIME TIMESTAMP,
+  USER_ID INT NULL,
   PRIMARY KEY (ID)
 );
 
-CREATE SEQUENCE BJ_SEQUENCE
-MINVALUE 1
-START WITH 1
-INCREMENT BY 1
-CACHE 10
+insert into user_details values (1, 'admin', 'admin');
 
-insert into BJ_USER_DETAILS values (1, 'admin', 'admin');
-commit;
+select * from USER_DETAILS;
+select * from USER_LOGIN_HISTORY;
 
-select * from BJ_USER_DETAILS;
-select * from BJ_USER_LOGIN_HISTORY;
+DROP TABLE USER_DETAILS;
+DROP TABLE USER_LOGIN_HISTORY;
 
+delete from USER_LOGIN_HISTORY;
  */
 
 package _001;

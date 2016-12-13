@@ -5,6 +5,14 @@ that all the dependencies are covered and you don’t get any NPE after the applic
 application is initialized, Spring will throw an exception if it cannot find <property> tag for the REQUIRED member variable. Spring will not 
 proceed with the execution of the application. This way we can catch the exception upfront and fix it. Without Required annotation, NPE exception 
 will be thrown at runtime.
+
+Simply apply the @Required annotation will not enforce the property checking, you also need to register an RequiredAnnotationBeanPostProcessor to 
+aware of the @Required annotation in bean configuration file. The RequiredAnnotationBeanPostProcessor can be enabled in two ways.
+
+1.) Include <context:annotation-config /> in bean configuration file.
+2.) Include ‘RequiredAnnotationBeanPostProcessor’ directly in bean configuration file.
+		<bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
  */
 
 package _001;

@@ -25,7 +25,7 @@ public class _043_PublishListenPublish {
 	}
 }
 
-@Component
+//@Component
 class LoginPublisher implements ApplicationEventPublisherAware {
 	private ApplicationEventPublisher publisher;
 
@@ -61,7 +61,7 @@ class LoginEvent4 extends ApplicationEvent {
     }
 }
 
-@Component
+//@Component
 class LoginHistoryListener3{
 
 	@EventListener
@@ -72,7 +72,7 @@ class LoginHistoryListener3{
 	}
 }
 
-@Component
+//@Component
 class LoginHistoryListener4 {
 
 	@EventListener

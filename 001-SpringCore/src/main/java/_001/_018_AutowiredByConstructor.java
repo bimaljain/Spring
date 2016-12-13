@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 //@Component //uncomment this first
+//@Component("AAA") //To create a custom name for component, you can put custom name like this
 public class _018_AutowiredByConstructor {
 	public static void main(String[] args){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("_013_BeanLifeCycle_Annotation.xml");
