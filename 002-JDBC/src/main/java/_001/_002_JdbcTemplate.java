@@ -2,6 +2,70 @@
 In the last example, you have to create many redundant codes (create connection , close connection , handle exception) in all the DAO database 
 operation methods – insert, update and delete. It just not efficient, ugly, error prone and tedious.
 
+-------------------------
+Spring - JDBC Operations:
+-------------------------
+Spring JDBC modules simplifies the use of underlying JDBC API. org.springframework.jdbc.core.JdbcOperations defines Spring way of handling database 
+access using JDBC. This interface provides abstraction from the low level repetitive JDBC operations like opening the database connection, preparing 
+the Jdbc statements, handling and processing exception, handling transactions, closing the connection etc.
+
+This interface is not meant to be implemented by the application code. We already have a well known implementation class, JdbcTemplate
+
+Here we are going to give a quick overview of the methods defined in JdbcOperations interface.
+
+1.) query(String sql, RowMapper<T> rowMapper): 
+	RowMapper<T>{T mapRow(ResultSet rs, int rowNum)} for mapping rows to T on a per-row basis. If we need to map exactly one result object per row 
+	then this is a good choice.
+
+2.) query(String sql, Object[] args, RowMapper<T> rowMapper):
+	Where args are value binding for '?' placeholder.
+	
+3.) query(String sql, Object[] args, int[] argTypes, RowMapper<T> rowMapper):
+	Where argTypes are sql type (java.sql.Types). The methods without this parameter, figure out the corresponding SQL type themselves.
+
+4.) query(String sql, RowMapper<T> rowMapper, Object... args):
+	Where args are same as above i.e. values for '?' placeholders. The difference is, these overloaded methods have Java Varargs as parameter.
+
+5.) queryForABC(....):
+	Where ABC can be one of the followings:
+	List : We expect the query result will be of multiple rows. It has many overloaded versions. If there are multiple column fields with each 
+	fetched rows, then we should use the ones return List of Maps. If there's only one field with fetched rows, then we should use the ones return 
+	List<T>, where T is the corresponding java type for the column type.
+	
+	Map : If query is setup to return only one row with multiple columns, then we should use this one.
+	
+	Object : If query is going to return only one row and one field, then we can use this. The object type should be compatible with database 
+	column type. The overloaded methods with parameter RowObject is used if there are multiple columns but we want to map them to our custom 
+	java object T.
+	
+	RowSet : return the disconnected Spring's SqlRowSet. It's a mirror interface for javax.sql.RowSet
+
+6.) update(....):
+	All overloaded update methods are used to perform 'insert' or 'update' or 'delete' statements. The use of different combination of parameters are 
+	same as above methods, expect for the one with KeyHolder. It is used to capture auto-generated keys, typically resulted in an 'insert' statement.
+
+7.) batchUpdate(....):
+	Issue multiple SQL updates on a single JDBC Statement using batching. Followings are two new parameters which belong to different overloaded 
+	batchUpdate methods:
+	BatchPreparedStatementSetter{
+	     void setValues(PreparedStatement ps, int i);
+	     int getBatchSize();
+	            }
+	It's similar to PreparedStatementSetter described up, except it is called multiple times for each number of updates in the batch. It has extra 
+	int i parameter too, which is the 0 based index of the update iteration. Useful for setting params from user collection to the statement.
+	
+	ParameterizedPreparedStatementSetter<T>{
+	     void setValues(PreparedStatement ps, T argument);
+	                    }
+	Better than the last one as it passes the real user object to set the parameter to the statement. The corresponding batchUpdate accepts the 
+	collection of user object.
+	
+8.) execute(....):
+	It can be used to execute any arbitrary SQL but often used for DDL statements like creating/alerting/dropping tables etc.
+	
+9.) call(....):
+	Calls database stored procedures or functions.
+
 In Spring JDBC development, you can use JdbcTemplate and JdbcDaoSupport classes to simplify the overall database operation processes.
  */
 
@@ -31,7 +95,7 @@ public class _002_JdbcTemplate {
 	}
 }
 
-@Component
+//@Component
 class UserDAO_002{	
 	private JdbcTemplate jdbcTemplate;
 	
