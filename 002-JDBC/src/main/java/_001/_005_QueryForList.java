@@ -1,10 +1,14 @@
 /*
 queryForList() will always supply multiple rows. If required type is supplied, then you get only one column; otherwise all the columns. 
+
+--------------------------
+queryForList() vs query():
+--------------------------
+query returns domain objects whereas queryForList() returns Map
  */
 
 package _001;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
@@ -16,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 public class _005_QueryForList {
@@ -31,13 +34,6 @@ public class _005_QueryForList {
 		System.out.println(userDAO.getUser6());
 		System.out.println(userDAO.getUser7());
 	}
-}
-
-class UserRowMapper005 implements RowMapper<User_005>{
-	public User_005 mapRow(ResultSet rs, int rowNum) throws SQLException {
-		User_005 user = new User_005(rs.getInt(1),rs.getString(2),rs.getString(3));
-		return user;
-	}	
 }
 
 @Component
