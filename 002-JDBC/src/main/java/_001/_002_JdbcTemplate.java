@@ -1,6 +1,6 @@
 /*
 In the last example, you have to create many redundant codes (create connection , close connection , handle exception) in all the DAO database 
-operation methods – insert, update and delete. It just not efficient, ugly, error prone and tedious.
+operation methods ï¿½ insert, update and delete. It just not efficient, ugly, error prone and tedious.
 
 -------------------------
 Spring - JDBC Operations:
@@ -95,7 +95,7 @@ public class _002_JdbcTemplate {
 	}
 }
 
-//@Component
+@Component
 class UserDAO_002{	
 	private JdbcTemplate jdbcTemplate;
 	

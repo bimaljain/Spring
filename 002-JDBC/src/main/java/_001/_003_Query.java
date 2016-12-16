@@ -1,3 +1,7 @@
+/*
+query() will always return multiple rows and multiple columns.
+ */
+
 package _001;
 
 import java.sql.ResultSet;
@@ -25,7 +29,14 @@ public class _003_Query {
 	}
 }
 
-//@Component
+class UserRowMapper003 implements RowMapper<User_003>{
+	public User_003 mapRow(ResultSet rs, int rowNum) throws SQLException {
+		User_003 user = new User_003(rs.getInt(1),rs.getString(2),rs.getString(3));
+		return user;
+	}	
+}
+
+@Component
 class UserDAO_003{	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -33,48 +44,24 @@ class UserDAO_003{
 	public void setDataSource(DataSource dataSource){
 		this.jdbcTemplate=new JdbcTemplate(dataSource); //we don't use dataSource directly anymore
 	}
-	
+
 	public List<User_003> getAllUsers(){
-		List<User_003> users = jdbcTemplate.query("SELECT * FROM USER_DETAILS",
-				new RowMapper<User_003>(){
-				public User_003 mapRow(ResultSet rs, int rowNum) throws SQLException {
-					User_003 user = new User_003(rs.getInt(1),rs.getString(2),rs.getString(3));
-					return user;
-				}			
-			});
+		List<User_003> users = jdbcTemplate.query("SELECT * FROM USER_DETAILS", new UserRowMapper003());
 		return users;
 	}
 	
 	public List<User_003> getUser(){
-		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, 
-				new RowMapper<User_003>(){
-				public User_003 mapRow(ResultSet rs, int rowNum) throws SQLException {
-					User_003 user = new User_003(rs.getInt(1),rs.getString(2),rs.getString(3));
-					return user;
-				}			
-			});
+		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new UserRowMapper003());
 		return user;
 	}	
 	
 	public List<User_003> getUser2(){
-		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new int[]{Types.INTEGER}, 
-				new RowMapper<User_003>(){
-				public User_003 mapRow(ResultSet rs, int rowNum) throws SQLException {
-					User_003 user = new User_003(rs.getInt(1),rs.getString(2),rs.getString(3));
-					return user;
-				}			
-			});
+		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new int[]{Types.INTEGER}, new UserRowMapper003());
 		return user;
 	}
 	
 	public List<User_003> getUser3(){
-		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=? and USER_ID=? ", 
-				new RowMapper<User_003>(){
-				public User_003 mapRow(ResultSet rs, int rowNum) throws SQLException {
-					User_003 user = new User_003(rs.getInt(1),rs.getString(2),rs.getString(3));
-					return user;
-				}			
-			}, 9, "bharat");
+		List<User_003> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS WHERE ID=? and USER_ID=? ", new UserRowMapper003(), 9, "bharat");
 		return user;
 	}
 }
@@ -111,4 +98,5 @@ class User_003{
 		return id + ": " + name + ": " + password;
 	}
 }
+
 

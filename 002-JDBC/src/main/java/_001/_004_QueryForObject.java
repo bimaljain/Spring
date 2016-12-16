@@ -1,3 +1,7 @@
+/*
+queryForObject() will always return one row. If required type is supplied, then you get only one column; otherwise all the columns. 
+ */
+
 package _001;
 
 import java.sql.ResultSet;
@@ -75,7 +79,7 @@ class UserDAO_004{
 	}
 	
 	public User_004 getUser7(){
-		User_004 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=? and USER_ID=?", new UserRowMapper(), 9, "bharat");
+		User_004 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=? and USER_ID=?", new UserRowMapper(), 9, "bimal");
 		return user;
 	}
 	

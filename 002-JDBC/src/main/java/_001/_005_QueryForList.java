@@ -1,3 +1,7 @@
+/*
+queryForList() will always supply multiple rows. If required type is supplied, then you get only one column; otherwise all the columns. 
+ */
+
 package _001;
 
 import java.sql.ResultSet;
@@ -26,7 +30,6 @@ public class _005_QueryForList {
 		System.out.println(userDAO.getUser5());
 		System.out.println(userDAO.getUser6());
 		System.out.println(userDAO.getUser7());
-		System.out.println(userDAO.getUser8());
 	}
 }
 
@@ -57,32 +60,27 @@ class UserDAO_005{
 	}
 	
 	public List<Map<String, Object>> getUser3(){
-		List<Map<String, Object>> userName = jdbcTemplate.queryForList("SELECT USER_ID FROM USER_DETAILS WHERE ID=? and USER_ID=?", 9,"bharat");
+		List<Map<String, Object>> userName = jdbcTemplate.queryForList("SELECT * FROM USER_DETAILS WHERE USER_ID=?", "bimal");
 		return userName;
 	}
 	
-	public String getUser4(){
-		String userName = jdbcTemplate.queryForObject("SELECT USER_ID FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new int[]{Types.INTEGER},String.class);
+	public List<String> getUser4(){
+		List<String> userName = jdbcTemplate.queryForList("SELECT USER_ID FROM USER_DETAILS WHERE USER_ID=?", String.class, "bimal");
 		return userName;
 	}
 	
-	public User_005 getUser5(){
-		User_005 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=9", new UserRowMapper005());
+	public List<String> getUser5(){
+		List<String> user = jdbcTemplate.queryForList("SELECT USER_ID FROM USER_DETAILS WHERE ID=?", new Object[]{9}, String.class);
 		return user;
 	}
 	
-	public User_005 getUser6(){
-		User_005 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new UserRowMapper005());
+	public List<Map<String, Object>> getUser6(){
+		List<Map<String, Object>> user = jdbcTemplate.queryForList("SELECT * FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, new int[] {Types.VARCHAR});
 		return user;
 	}
 	
-	public User_005 getUser7(){
-		User_005 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=? and USER_ID=?", new UserRowMapper005(), 9, "bharat");
-		return user;
-	}
-	
-	public User_005 getUser8(){
-		User_005 user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE ID=?", new Object[]{9}, new int[]{Types.INTEGER}, new UserRowMapper005());
+	public List<Integer> getUser7(){
+		List<Integer> user = jdbcTemplate.queryForList("SELECT ID FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, new int[] {Types.VARCHAR}, Integer.class);
 		return user;
 	}	
 }
