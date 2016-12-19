@@ -1,6 +1,4 @@
-/*
-query() will always return multiple rows and multiple columns.
- */
+// A JDBC batch update is multiple updates using the same database session. That is, we don't have to open connections multiple times.
 
 package _001;
 
@@ -20,9 +18,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.stereotype.Component;
 
+import _002_helper.User;
+
 public class _008_BatchUpdate {
 	public static void main(String[] args) throws SQLException{
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_002_JdbcTemplate.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_001_Jdbc.xml");
 		UserDAO_008 userDAO = (UserDAO_008)ctx.getBean("userDAO_008");
 		userDAO.getUser1();
 		userDAO.getUser2();
@@ -38,7 +38,7 @@ class UserDAO_008{
 	
 	@Autowired
 	public void setDataSource(DataSource dataSource){
-		this.jdbcTemplate=new JdbcTemplate(dataSource); //we don't use dataSource directly anymore
+		this.jdbcTemplate=new JdbcTemplate(dataSource);
 	}
 
 	public void getUser1(){
@@ -57,64 +57,33 @@ class UserDAO_008{
 				new int[]{Types.VARCHAR, Types.VARCHAR});
 	}
 	
+	//batchUpdate(String sql, BatchPreparedStatementSetter pss) 
 	public void getUser4(){
-		final List<User_008> user = Arrays.asList(new User_008(1,"Alex","alex"), new User_008(2,"Adam","adam"));
+		final List<User> user = Arrays.asList(new User(1,"Alex","alex"), new User(2,"Adam","adam"));
+		
 		jdbcTemplate.batchUpdate("INSERT INTO USER_DETAILS (USER_ID,PASSWORD) VALUES(?,?)",
-				new BatchPreparedStatementSetter() {					
+				new BatchPreparedStatementSetter() {			
 					public void setValues(PreparedStatement ps, int i) throws SQLException {
-						ps.setString(1, user.get(i).getName());
+						ps.setString(1, user.get(i).getUserId()); //i starts from 0 until getBatchSize()
 						ps.setString(2, user.get(i).getPassword());						
-					}
-					
+					}					
 					public int getBatchSize() {
 						return user.size();
 					}
 				});
 	}
 	
+	//batchUpdate(String sql, Collection<T> batchArgs, int batchSize, ParameterizedPreparedStatementSetter<T> pss)
+	//This methods breaks the batch updates into several smaller batches specified by batchSize. 
 	public void getUser5(){
-		final List<User_008> users = Arrays.asList(new User_008(1,"Alex2","alex"), new User_008(2,"Adam2","adam"));
-		jdbcTemplate.batchUpdate("INSERT INTO USER_DETAILS (USER_ID,PASSWORD) VALUES(?,?)", users, 1,
-				new ParameterizedPreparedStatementSetter<User_008>() {					
-					public void setValues(PreparedStatement ps, User_008 user) throws SQLException {
-						ps.setString(1, user.getName());
+		final List<User> users = Arrays.asList(new User(1,"Alex2","alex"), new User(2,"Adam2","adam"));
+		
+		jdbcTemplate.batchUpdate("INSERT INTO USER_DETAILS (USER_ID,PASSWORD) VALUES(?,?)", users, 1, //1 is batch size
+				new ParameterizedPreparedStatementSetter<User>() {					
+					public void setValues(PreparedStatement ps, User user) throws SQLException {
+						ps.setString(1, user.getUserId());
 						ps.setString(2, user.getPassword());						
 					}
 				});
 	}
 }
-
-class User_008{
-	private int id;
-	private String name;
-	private String password;
-	
-	public User_008(int id, String name, String password) {
-		this.id = id;
-		this.name = name;
-		this.password = password;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String toString(){
-		return id + ": " + name + ": " + password;
-	}
-}
-
-

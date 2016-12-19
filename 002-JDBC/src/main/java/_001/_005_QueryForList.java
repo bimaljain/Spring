@@ -1,5 +1,5 @@
 /*
-queryForList() will always supply multiple rows. If required type is supplied, then you get only one column; otherwise all the columns. 
+queryForList() will always return multiple rows. If required type is supplied, then you get only one column; otherwise all the columns. 
 
 --------------------------
 queryForList() vs query():
@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 public class _005_QueryForList {
 	public static void main(String[] args) throws SQLException{
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_002_JdbcTemplate.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_001_Jdbc.xml");
 		UserDAO_005 userDAO = (UserDAO_005)ctx.getBean("userDAO_005");
 		System.out.println(userDAO.getUser1());
 		System.out.println(userDAO.getUser2());
@@ -71,46 +71,15 @@ class UserDAO_005{
 	}
 	
 	public List<Map<String, Object>> getUser6(){
-		List<Map<String, Object>> user = jdbcTemplate.queryForList("SELECT * FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, new int[] {Types.VARCHAR});
+		List<Map<String, Object>> user = jdbcTemplate.queryForList("SELECT * FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, 
+				new int[] {Types.VARCHAR});
 		return user;
 	}
 	
 	public List<Integer> getUser7(){
-		List<Integer> user = jdbcTemplate.queryForList("SELECT ID FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, new int[] {Types.VARCHAR}, Integer.class);
+		List<Integer> user = jdbcTemplate.queryForList("SELECT ID FROM USER_DETAILS WHERE USER_ID=?", new Object[]{"bimal"}, new int[] {Types.VARCHAR},
+				Integer.class);
 		return user;
 	}	
-}
-
-class User_005{
-	private int id;
-	private String name;
-	private String password;
-	
-	public User_005(int id, String name, String password) {
-		this.id = id;
-		this.name = name;
-		this.password = password;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String toString(){
-		return id + ": " + name + ": " + password;
-	}
 }
 

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 public class _006_QueryForMap {
 	public static void main(String[] args) throws SQLException{
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("_002_JdbcTemplate.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("_001_Jdbc.xml");
 		UserDAO_006 userDAO = (UserDAO_006)ctx.getBean("userDAO_006");
 		System.out.println(userDAO.getUser1());
 		System.out.println(userDAO.getUser2());
@@ -49,39 +49,6 @@ class UserDAO_006{
 		Map<String, Object> userName = jdbcTemplate.queryForMap("SELECT * FROM USER_DETAILS WHERE USER_ID=?", new Object[]{9}, 
 				new int[Types.INTEGER]);
 		return userName;
-	}
-}
-
-class User_006{
-	private int id;
-	private String name;
-	private String password;
-	
-	public User_006(int id, String name, String password) {
-		this.id = id;
-		this.name = name;
-		this.password = password;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String toString(){
-		return id + ": " + name + ": " + password;
 	}
 }
 
