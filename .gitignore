@@ -69,3 +69,7 @@ Temporary Items
 /32-PageRedirection/
 /33-StaticPages/
 /34-ExceptionHandling/
+
+005-HelloWeb/.settings/.jsdtscope
+005-HelloWeb/.settings/org.eclipse.jdt.core.prefs
+*.prefs
