@@ -13,19 +13,22 @@ DispatcherServlet:
 ------------------
 The Spring Web MVC framework is designed around a DispatcherServlet that handles all the HTTP requests and responses. Following is the sequence of 
 events corresponding to an incoming HTTP request to DispatcherServlet:	
-1. After receiving an HTTP request, DispatcherServlet consults the HandlerMapping to call the appropriate Controller. 
+1. After receiving an HTTP request, DispatcherServlet consults the HandlerMapping to call the appropriate Controller. When no handler mapping is 
+explicitly specified in configuration, BeanNameUrlHandlerMapping is used to map the request by default. This class search in all controller classes 
+to map the particular request with the method.
 2. The Controller takes the request and calls the appropriate service methods based on used GET or POST method. The service method will set model 
 data based on defined business logic and returns view name to the DispatcherServlet.
 3. The DispatcherServlet will take help from ViewResolver to pickup the defined view for the request.
-4. Once view is finalized, The DispatcherServlet passes the model data to the view which is finally rendered on the browser.
+4. Once view is finalized, the DispatcherServlet passes the model data to the view which is finally rendered on the browser.
 
 All the above mentioned components i.e. HandlerMapping, Controller and ViewResolver are parts of WebApplicationContext which is an extension of the 
 plain ApplicationContext with some extra features necessary for web applications.
+DispatcherServlet is also termed as front controller.
 
 --------
 web.xml:
 --------
-1. You need to map requests that you want the DispatcherServlet to handle, by using a URL mapping in the web.xml file. The above example shows 
+1. You need to map requests that you want the DispatcherServlet to handle, by using a URL mapping in the web.xml file. The example shows 
 declaration and mapping for HelloWebDispatcherServlet.
 2. The web.xml file will be kept in WEB-INF directory. Upon initialization of HelloWebDispatcherServlet, the framework will try to load the 
 application context from a file named [servlet-name]-servlet.xml located in the application's WEB-INF directory. In this case our file will be 
@@ -34,8 +37,8 @@ HelloWeb-servlet.xml.
 handled by the HelloWeb DispatcherServlet.
 4. If you do not want to go with default filename as [servlet-name]-servlet.xml and default location as WEB-INF, you can customize this file name 
 and location by adding the servlet listener ContextLoaderListener in your web.xml file as follows:
+
 <web-app...>
-<!-------- DispatcherServlet definition goes here----->
 <context-param>
 <param-name>contextConfigLocation</param-name>
 <param-value>/WEB-INF/HelloWeb-servlet.xml</param-value>
@@ -62,8 +65,10 @@ Controller:
 2. The @RequestMapping annotation is used to map a URL to either an entire class or a particular handler method.
 3. There are following important points to be noted about the controller defined above:
 · You will define required business logic inside a service method. You can call another method inside this method as per requirement.
-· Based on the business logic defined, you will create a model within this method. You can setter different model attributes and these attributes will be accessed by the view to present the final result. This example creates a model with its attribute "message".
-· A defined service method can return a String which contains the name of the view to be used to render the model. This example returns "hello" as logical view name.
+· Based on the business logic defined, you will create a model within this method. You can set different model attributes and these attributes will 
+be accessed by the view to present the final result. This example creates a model with its attribute "message".
+· A defined service method can return a String which contains the name of the view to be used to render the model. This example returns "hello" as 
+logical view name.
 
 -----
 View:

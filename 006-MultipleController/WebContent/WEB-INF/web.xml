@@ -19,7 +19,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>HelloWeb</servlet-name> <!-- name of the web application context -->
-		<url-pattern>/</url-pattern> <!-- all requests accepted here -->
+		<servlet-name>HelloWeb</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -1,3 +1,6 @@
+/*
+@ExceptionHandler: Annotation for handling exceptions in specific handler classes and/or handler methods.
+ */
 package com.spring;
 
 import javax.servlet.http.HttpServletRequest;

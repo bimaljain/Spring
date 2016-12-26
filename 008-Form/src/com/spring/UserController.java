@@ -5,7 +5,7 @@ Think of Command Object as a POJO/JavaBean/etc.. that backs the form in your pre
 Once the form is submitted, all the individual attributes are mapped/bound to this object. On the way up to presentation, Command Object properties 
 may be used to pre/populate the form.
 
-
+http://localhost:8082/008-Form/
  */
 package com.spring;
 
@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	UserDAO userDAO;
 	
-	@RequestMapping("/empform")
+	@RequestMapping(value="/empform", method=RequestMethod.GET)
 	public ModelAndView showForm(){
 		return new ModelAndView("empform", "command", new User());
 	}

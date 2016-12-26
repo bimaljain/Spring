@@ -1,6 +1,5 @@
 /*
- * index page= http://localhost:8082/005-HelloWeb/
- * Directly invoke: http://localhost:8082/005-HelloWeb/hello2
+ * index page= http://localhost:8082/006-MultipleController/
  */
 
 package com.spring;
