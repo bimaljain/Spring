@@ -2,7 +2,7 @@ package com.spring;
 
 public class User {
 	private int id;
-	private String userid;
+	private String userid="bimal";
 	private String password;
 	public int getId() {
 		return id;

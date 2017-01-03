@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserDAO {
 	private JdbcTemplate jdbcTemplate;
+	
 	@Autowired
 	public void setDataSource(DataSource dataSource){
 		this.jdbcTemplate = new JdbcTemplate(dataSource);

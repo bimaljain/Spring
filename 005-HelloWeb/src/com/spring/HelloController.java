@@ -22,13 +22,12 @@ data based on defined business logic and returns view name to the DispatcherServ
 4. Once view is finalized, the DispatcherServlet passes the model data to the view which is finally rendered on the browser.
 
 All the above mentioned components i.e. HandlerMapping, Controller and ViewResolver are parts of WebApplicationContext which is an extension of the 
-plain ApplicationContext with some extra features necessary for web applications.
-DispatcherServlet is also termed as front controller.
+plain ApplicationContext with some extra features necessary for web applications. 
 
 --------
 web.xml:
 --------
-1. You need to map requests that you want the DispatcherServlet to handle, by using a URL mapping in the web.xml file. The example shows 
+1. You need to map requests that you want the DispatcherServlet to handle, by using a URL  mapping in the web.xml file. The example shows 
 declaration and mapping for HelloWebDispatcherServlet.
 2. The web.xml file will be kept in WEB-INF directory. Upon initialization of HelloWebDispatcherServlet, the framework will try to load the 
 application context from a file named [servlet-name]-servlet.xml located in the application's WEB-INF directory. In this case our file will be 
@@ -36,17 +35,7 @@ HelloWeb-servlet.xml.
 3. Next, <servlet-mapping> tag indicates what URLs will be handled by which DispatcherServlet. Here all the HTTP requests ending with .jsp will be 
 handled by the HelloWeb DispatcherServlet.
 4. If you do not want to go with default filename as [servlet-name]-servlet.xml and default location as WEB-INF, you can customize this file name 
-and location by adding the servlet listener ContextLoaderListener in your web.xml file as follows:
-
-<web-app...>
-<context-param>
-<param-name>contextConfigLocation</param-name>
-<param-value>/WEB-INF/HelloWeb-servlet.xml</param-value>
-</context-param>
-<listener>
-<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-</listener>
-</web-app>
+and location by adding the servlet listener ContextLoaderListener in your web.xml.
 
 ----------------------
 WebApplicationContext:
@@ -61,14 +50,19 @@ is delegated to a view implementation located at /WEB-INF/jsp/hello.jsp .
 -----------
 Controller:
 -----------
-1. The @Controller annotation indicates that a particular class serves the role of a Spring MVC controller. 
+1. The @Controller annotation indicates that a particular class serves the role of a Spring MVC controller.  The dispatcher scans such annotated 
+classes for mapped methods and detects @RequestMapping annotations.
 2. The @RequestMapping annotation is used to map a URL to either an entire class or a particular handler method.
 3. There are following important points to be noted about the controller defined above:
-· You will define required business logic inside a service method. You can call another method inside this method as per requirement.
-· Based on the business logic defined, you will create a model within this method. You can set different model attributes and these attributes will 
-be accessed by the view to present the final result. This example creates a model with its attribute "message".
-· A defined service method can return a String which contains the name of the view to be used to render the model. This example returns "hello" as 
-logical view name.
+	-You will define required business logic inside a service method. You can call another method inside this method as per requirement. Based on the 
+	 business logic defined, you will create a model within this method. You can set different model attributes and these attributes will be accessed 
+	 by the view to present the final result. This example creates a model with its attribute "message".
+	-A defined service method can return a String which contains the name of the view to be used to render the model. This example returns "hello" as 
+	 logical view name.
+4. So looking at the Spring MVC architecture you have a DispatcherServlet class that represent a front controller that dispatch all the HTTP Request 
+towards the appropriate controller classes (annotated by @Controller). This class perform the business logic (and can call the services) by its method. 
+These classes (or its methods) are typically annotated also with @RequestMapping annotation that specify what HTTP Request is handled by the controller 
+and by its method.
 
 -----
 View:
@@ -85,9 +79,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.ModelMap;
 
+/*
+This annotation serves as a specialization of @Component, allowing for implementation classes to be autodetected through classpath scanning. It is 
+typically used in combination with annotated handler methods based on the org.springframework.web.bind.annotation.RequestMapping annotation.
+ */
 @Controller
 public class HelloController{
  
+	//Annotation for mapping web requests onto specific handler classes and/or handler methods.
    @RequestMapping(value = "/hello2", method = RequestMethod.GET)
    public String printHello(ModelMap model) {
       model.addAttribute("message", "Hello Spring MVC Framework!");
