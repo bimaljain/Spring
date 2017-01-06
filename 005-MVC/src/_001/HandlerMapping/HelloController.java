@@ -38,12 +38,12 @@ and location by adding contextConfigLocation in your web.xml.
 ----
 URL:
 ----
-index page= http://localhost:8082/005-00-HelloWeb/
-Directly invoke: http://localhost:8082/005-00-HelloWeb/hello2
+index page= http://localhost:8082/005-MVC/
+Directly invoke: http://localhost:8082/005-MVC/001/hello2
 
  */
 
-package _001;
+package _001.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

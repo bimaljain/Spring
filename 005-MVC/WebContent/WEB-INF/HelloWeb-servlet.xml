@@ -9,7 +9,7 @@
 
    <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
    
-   <bean name="/hello2" class="_001.HelloController" />
+   <bean name="/hello2" class="_001.HandlerMapping.HelloController" />
    
    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="prefix" value="/WEB-INF/jsp/" />
