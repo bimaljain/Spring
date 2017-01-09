@@ -9,27 +9,19 @@
    http://www.springframework.org/schema/mvc 
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan base-package="_002.Annotation" />
-
+	<context:component-scan base-package="_001" />
 	<mvc:annotation-driven />
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/usermessages">
-		</property>
-	</bean>
 	
-	<!-- Exception resolver -->
-<!-- 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
-<!-- 		<property name="exceptionMappings"> -->
-<!-- 			<map> -->
-<!-- 				<entry key="NullPointerException" value="010-exceptionpage" /> -->
-<!-- 				<entry key="_010_CustomException" value="010-exceptionpage" /> -->
-<!-- 			</map> -->
-<!-- 		</property> -->
-<!-- 		<property name="defaultErrorView" value="010-exceptionpage" /> -->
-<!-- 	</bean> -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/bj" />
+		<property name="username" value="root" />
+		<property name="password" value="luvondrox" />
+	</bean>
+
 </beans>
