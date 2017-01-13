@@ -36,17 +36,6 @@ Register the springSecurityFilter with war:
 -------------------------------------------
 SecurityConfigurationInitializer.java is a initializer class which registers the springSecurityFilterChain [created above] with application war.
 
-This setup in XML configuration format would be:
-<filter>
-    <filter-name>springSecurityFilterChain</filter-name>
-    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-</filter>
-
-<filter-mapping>
-    <filter-name>springSecurityFilterChain</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-
 -----------------
 Controller class:
 -----------------
