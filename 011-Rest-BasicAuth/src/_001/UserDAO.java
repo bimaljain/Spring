@@ -48,6 +48,11 @@ public class UserDAO {
 		List<User> user = jdbcTemplate.query("SELECT * FROM USER_DETAILS LIMIT " + limit +" , " + total, new rowMapper());
 		return user;
 	}
+	
+	public User getUserByUserId(String userId){
+		User user = jdbcTemplate.queryForObject("SELECT * FROM USER_DETAILS WHERE USER_ID=?" , new Object[]{userId}, new rowMapper());
+		return user;
+	}
 }
 
 class rowMapper implements RowMapper<User>{
