@@ -17,7 +17,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
  
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity //It creates a filter chain with order=0 by default
 public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
  
     @Autowired
@@ -43,8 +43,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
- 
+    } 
  
     @Bean
     public TokenStore tokenStore() {

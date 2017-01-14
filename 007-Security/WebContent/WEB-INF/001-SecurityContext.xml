@@ -3,7 +3,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 	
-	<!-- below is authorization -->
 	<http auto-config="true">
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/001/admin" access="hasRole('ADMIN')" />
@@ -11,7 +10,6 @@
 		<form-login authentication-failure-url="/001/access_denied" />
 	</http>
 	
-	<!-- below is authentication -->
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
