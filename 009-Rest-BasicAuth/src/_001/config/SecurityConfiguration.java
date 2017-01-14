@@ -21,7 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {  
-		//Cross-Site Request Forgery (CSRF): We should not disable it but is this needed for REST services since there is no browser involved here?
+		//Cross-Site Request Forgery (CSRF): We should not disable it.
 		//Without disabling this, we cannot perform any edit operations. Only GET requests works.
 		//client sent the csrf token with the request, which we must sent back with the response
 		http.csrf().disable()

@@ -2,9 +2,6 @@
 Spring Security is a lightweight security framework that provides authentication and authorization support in order to Secure Spring-based 
 applications. It integrates well with Spring MVC and comes bundled with popular security algorithm implementations.
 
-This tutorial demonstrates Spring Security 4 usage to secure a Spring MVC web application, securing URL access with authentication. This post uses 
-Spring Annotation based configuration for Servlet 3.0 containers [thus no web.xml]
-
 -------------------------
 ADD: spring-security jars
 -------------------------
@@ -23,10 +20,10 @@ example, we have used in-memory authentication while you are free to choose from
 The overridden Method configure(HttpSecurity http) configures HttpSecurity which allows configuring web based security for specific http requests. 
 By default it will be applied to all requests, but can be restricted using requestMatcher(RequestMatcher)/antMathchers or other similar methods.
 In above configuration, we say that URL’s ‘/’ is not secured, anyone can access them. URL ‘/admin’ can only be accessed by someone who have ADMIN role.
- URL ‘/db’ can only be accessed by someone who have both DBA role.
+ URL ‘/db’ can only be accessed by someone who has DBA role.
 
 Method formLogin provides support for form based authentication and will generate a default form asking for user credentials. You are allowed to 
-configure your own login form.We will see examples for the same in subsequent posts.
+configure your own login form.
 
 We have also used exceptionHandling().accessDeniedPage() which in this case will catch all 403 [http access denied] exceptions and display our 
 user defined page instead of showing default HTTP 403 page [ which is not so helpful anyway].
@@ -43,7 +40,9 @@ Methods in controller class are trivial. Method getPrincipal is a generic functi
 Method logoutPage handles the logging out with a simple call to SecurityContextLogoutHandler().logout(request, response, auth);. It’s handy and saves 
 you from putting cryptic logout logic in your JSP’s which is not really manageable.
 
+----------------------------------------------
 Add Initializer class (equivalent of web.xml):
+----------------------------------------------
 Notice that above initializer class extends AbstractAnnotationConfigDispatcherServletInitializer which is the base class for all 
 WebApplicationInitializer implementations. Implementations of WebApplicationInitializer configures ServletContext programatically, for Servlet 3.0 
 environments. It means we won’t be using web.xml and we will deploy the app on Servlet 3.0 container.

@@ -204,15 +204,12 @@ Configuration files can be provided like this in web.xml
 <param-name>contextConfigLocation</param-name>  
 <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>  
 
-Basically you can isolate your root application context and web application context using ContextLoaderListner.
+Basically you can isolate your root application context and web application context using ContextLoaderListner. 
+Root Config Classes will be loaded first and then Servlet Config Classes will be loaded.
 The config file mapped with context param will behave as root application context configuration. And config file mapped with dispatcher servlet 
 will behave like web application context. In any web application we may have multiple dispatcher servlets, so multiple web application contexts.
 But in any web application we may have only one root application context that is shared with all web application contexts. We should define our 
 common services, entities, aspects etc in root application context. And controllers, interceptors etc are in relevant web application context.
-
-Root Config Classes will be loaded first and then Servlet Config Classes will be loaded.
-
-This is because you should define the springSecurityFilterChain with either (NOT both) the web.xml or a AbstractSecurityWebApplicationInitializer. 
 
  */
 

@@ -10,12 +10,12 @@ maintain any state information for the client, which is good for scalability poi
 
 Authorization : Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0...
 
-This header will be sent with ech request. Since Credentials [Base 64 encoded, not even encrypted] are sent with each request, they can be compromised. 
+This header will be sent with each request. Since Credentials [Base 64 encoded, not even encrypted] are sent with each request, they can be compromised. 
 One way to prevent this is using HTTPS in conjunction with Basic Authentication.
 
 Basic Authentication & Spring Security
 With two steps, you can enable the Basic Authentication in Spring Security Configuration.
-1. Configure httpBasic : Configures HTTP Basic authentication. [http-basic in XML]
+1. Configure httpBasic : Configures HTTP Basic authentication.
 2. Configure authentication entry point with BasicAuthenticationEntryPoint : In case the Authentication fails [invalid/missing credentials], this 
 entry point will get triggered. It is very important, because we don’t want [Spring Security default behavior] of redirecting to a login page on 
 authentication failure [ We don't have a login page].
