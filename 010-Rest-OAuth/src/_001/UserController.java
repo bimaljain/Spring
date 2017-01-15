@@ -152,6 +152,20 @@ RUN:
 		
 	At this point, you have to again generate access token and refresh token.		
 
+5. We will not get refresh token if the grant type is client_credentials and hence we are not getting refresh_token from OAuth.
+	http://localhost:8082/012-Rest-OAuth/oauth/token?grant_type=client_credentials&username=admin&password=admin
+	HTTP-METHOD: POST
+	Accept: application/json
+	Basic Auth: Username-my-trusted-client, Password-secret
+	
+	RESULT:
+		{
+		  "access_token": "4e2444a6-2e5b-4a91-83ed-e5fd80ef247e",
+		  "token_type": "bearer",
+		  "expires_in": 11876,
+		  "scope": "read write trust"
+		}
+	
  */
 package _001;
 
