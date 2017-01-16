@@ -13,6 +13,7 @@ public class _003_RequestParamController {
 
 	//a simple URL request in the browser bar is always a GET type
 	//both URL pattern and HTTP request type must match
+	//http://localhost:8082/005-MVC/002/admissionForm.html
 	@RequestMapping(value="/admissionForm.html", method=RequestMethod.GET)
 	public ModelAndView getAdmissionForm(){
 		ModelAndView modelAndView = new ModelAndView("003-admissionForm");
@@ -23,7 +24,7 @@ public class _003_RequestParamController {
 	//use of defaultValue
 	@RequestMapping(value="/submitAdmissionForm.html", method=RequestMethod.POST)
 	public ModelAndView submitAdmissionForm(@RequestParam(value="studentName", defaultValue="Mr. Bimal") String studentName, 
-			@RequestParam("studentHobby") String studentHobby){
+											@RequestParam("studentHobby") String studentHobby){
 		ModelAndView modelAndView = new ModelAndView("003-admissionSuccess");
 		modelAndView.addObject("message", "Details submitted:: Name: " + studentName + ", Hobby:" + studentHobby);
 		return modelAndView;

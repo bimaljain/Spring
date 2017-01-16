@@ -7,6 +7,7 @@
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
+	<!-- We don't need to specify this as Spring uses this by default -->
    <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
    
    <bean name="/hello2" class="_001.HandlerMapping.HelloController" />

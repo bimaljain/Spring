@@ -7,13 +7,15 @@
 	<packaging>war</packaging>
 
 	<dependencies>
+	
+		<!-- Spring Core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>4.2.8.RELEASE</version>
 		</dependency>
 
-		<!-- web related dependencies -->
+		<!-- Spring MVC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
@@ -24,6 +26,8 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.2.8.RELEASE</version>
 		</dependency>
+		
+		<!-- Spring JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -34,6 +38,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.6</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -41,6 +46,7 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Spring Validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -52,7 +58,7 @@
 			<version>5.0.1.Final</version>
 		</dependency>
 
-		<!-- to use jstl tags -->
+		<!-- To use jstl tags -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
@@ -78,8 +84,10 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.7.5</version>
         </dependency>
+        
 	</dependencies>
 
+	<!-- I don't care -->
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>

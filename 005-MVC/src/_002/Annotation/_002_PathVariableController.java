@@ -8,16 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-/*
-Using @RequestMapping at class level
-http://localhost:8082/005-MVC/002/greet/hello1
- */
-
 //Multi-Action Controller: Controller class with more than one request handler method.
+//Using @RequestMapping at class level
+
 @Controller
 @RequestMapping("/greet")
 public class _002_PathVariableController{
 
+	//http://localhost:8082/005-MVC/002/greet/hello1
 	@RequestMapping(value = "/hello1", method = RequestMethod.GET)
 	public ModelAndView printHello() {
 		ModelAndView modelAndView = new ModelAndView("001-hello");
@@ -27,7 +25,7 @@ public class _002_PathVariableController{
 
 	/* 
    Binding path variables using @PathVariable
-   http://localhost:8082/005-MVC/002/greet/hello/India/Bimal
+   http://localhost:8082/005-MVC/002/greet/hello2/India/Bimal
 	 */
 	@RequestMapping(value = "/hello2/{countryName}/{userName}", method = RequestMethod.GET)
 	public ModelAndView printHello2(@PathVariable("countryName") String countryName, @PathVariable("userName") String userName) {

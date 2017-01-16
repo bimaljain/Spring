@@ -10,7 +10,6 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 	
-	<!-- this is needed else dispatcherServlet will not be able to process urls like /001/user/ -->
 	<context:component-scan base-package="_001" />
 	<mvc:annotation-driven />
 	

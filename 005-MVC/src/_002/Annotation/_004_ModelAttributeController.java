@@ -2,7 +2,7 @@
 ----------------------
 004-admissionForm.jsp:
 ----------------------
-First – notice that we’re including a tag library into our JSP page – the form taglib – to help with defining our form.
+First – notice that we’re including a tag library into our JSP page – the Spring form taglib – to help with defining our form.
 Next – the <form:form> tag plays an important role here; it’s very similar to the regular HTLM <form> tag but the modelAttribute attribute is the 
 key which specifies name of the model object that backs this form. This will correspond to the @ModelAttribute later on in the controller.
 Next – each input fields is using yet another useful tag from the Spring Form taglib – form: prefix. Each of these fields specifies a path attribute – 
@@ -28,7 +28,7 @@ Spring MVC Form Binding:
 2. In HTML form, you use spring:form tag and bind the controller object via modelAttribute.
 3. When the HTML form is “POST”, you get the value via @ModelAttribute.
 
-Here we are also checking Data Binding with different build-in datatypes like, Date, Collection (Arraylist), Long etc, and also with custom datatype
+Here we are also checking Data Binding with different build-in java datatypes like, Date, Collection (Arraylist), Long etc, and also with custom datatype
 like Address. Spring MVC does data binding for all these datatypes automatically.
 
 http://localhost:8082/005-MVC/002/004-admissionForm
@@ -73,8 +73,8 @@ public class _004_ModelAttributeController {
 //		return modelAndView;		
 //	}
 	
-	//@ModelAttribute can be used at the method level and as method argument
-	//Spring will automatically add the model object in the modelandview object for each request method handler present in this controller 
+	//@ModelAttribute can be used at the method level as well, apart from using it in method argument
+	//Spring will automatically add the model object in the modelandview object for each request method handler present in this controller class
 	//Spring MVC will call this method first before calling any request method handler present in this controller.
 	@ModelAttribute
 	public void commonModelObject(Model model){

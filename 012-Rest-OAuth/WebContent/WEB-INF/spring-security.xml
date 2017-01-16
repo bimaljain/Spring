@@ -9,8 +9,7 @@
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd ">
 
-	<!-- This is default url provided by spring to get the tokens(access and 
-		refresh) from OAuth -->
+	<!-- This is default url provided by spring to get the tokens(access and refresh) from OAuth -->
 	<http pattern="/oauth/token" create-session="stateless"
 		authentication-manager-ref="clientAuthenticationManager"
 		xmlns="http://www.springframework.org/schema/security">
@@ -18,17 +17,14 @@
 		<anonymous enabled="false" />
 		<http-basic entry-point-ref="clientAuthenticationEntryPoint" />
 
-		<!-- include this only if you need to authenticate clients via request 
-			parameters -->
+		<!-- include this only if you need to authenticate clients via request parameters -->
 
 		<custom-filter ref="clientCredentialsTokenEndpointFilter"
 			after="BASIC_AUTH_FILTER" />
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
 
-	<!-- This is where we tells spring security what URL should be protected 
-		and what roles have access to them -->
-
+	<!-- This is where we tells spring security what URL should be protected and what roles have access to them -->
 	<http pattern="/user/" create-session="stateless" auto-config="true"
 		entry-point-ref="oauthAuthenticationEntryPoint"
 		access-decision-manager-ref="accessDecisionManager"
@@ -38,7 +34,6 @@
 		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
 	</http>
-
 
 	<bean id="oauthAuthenticationEntryPoint"
 		class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint">
@@ -75,7 +70,6 @@
 		<authentication-provider user-service-ref="clientDetailsUserService" />
 	</authentication-manager>
 
-
 	<!-- Here we have hard-coded user name and password details. We can replace 
 		this with a user defined service to get users credentials from DB -->
 	<authentication-manager alias="authenticationManager"
@@ -95,7 +89,7 @@
 
 	<!--We have used JDBC tokenstore to store the tokens, we can use In Memory token store for development purpose -->	
 	<bean id="tokenStore" class="org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore" />
-
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/bj" />

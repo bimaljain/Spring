@@ -1,5 +1,7 @@
 package _001;
 
+import java.beans.Transient;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
@@ -9,9 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-public class UserDetailsServiceDAO implements UserDetailsService {
-
+@Service
+public class UserDetailsServiceDAO implements UserDetailsService, Serializable {
+	
 	@Autowired
 	UserDAO userDAO;
 

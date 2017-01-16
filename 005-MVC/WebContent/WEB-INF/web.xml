@@ -19,16 +19,16 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>002 configFile</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/002-WebApplicationContext.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>003 configFile</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 		<init-param>
@@ -37,7 +37,7 @@
 		</init-param>
 	</servlet>
 	<servlet>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>004 configFile</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 		<init-param>
@@ -46,7 +46,7 @@
 		</init-param>
 	</servlet>
 	<servlet>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>005 configFile</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 		<init-param>
@@ -61,19 +61,19 @@
 		<url-pattern>/001/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>002 configFile</servlet-name>
 		<url-pattern>/002/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>003 configFile</servlet-name>
 		<url-pattern>/003/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>004 configFile</servlet-name>
 		<url-pattern>/004/*</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>configFile</servlet-name>
+		<servlet-name>005 configFile</servlet-name>
 		<url-pattern>/005/*</url-pattern>
 	</servlet-mapping>
 

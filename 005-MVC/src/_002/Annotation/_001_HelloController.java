@@ -3,15 +3,14 @@
 USING ANNOTATIONS:
 ------------------
 WE DONT NEED:
-1. <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
-2. <bean name="/hello2" class="com.spring.HelloController" />
-3. public class HelloController extends AbstractController
+1. <bean name="/hello2" class="com.spring.HelloController" />
+2. public class HelloController extends AbstractController
 
 ADD:
 1. @Controller: Class annotated with @Controller will act as Spring controller.
-2. @RequestMapping (to either an entire class or a particular handler method)
-3. The <context:component-scan> tag will be use to activate Spring MVC annotation scanning capability which allows to make use of annotations 
-like @Controller. @Controller serves as a specialized @Component. It is typically used in combination with annotated handler methods based on the 
+2. @RequestMapping (can be used either on an entire class or a particular handler method)
+3. The <context:component-scan> tag will be use to activate Spring annotation scanning capability which allows to make use of annotations like 
+@Controller. @Controller serves as a specialized @Component. It is typically used in combination with annotated handler methods based on the 
 org.springframework.web.bind.annotation.RequestMapping annotation.
 
 FLOW:
