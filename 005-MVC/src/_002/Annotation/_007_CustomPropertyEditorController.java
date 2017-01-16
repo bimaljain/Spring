@@ -2,6 +2,7 @@
 Write your custom property editor class which extends PropertyEditorSupport
 Register the class with the data binder
  */
+
 package _002.Annotation;
 
 import java.text.SimpleDateFormat;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import helper.User;
-import helper._007_UserIdEditor;
 
 @Controller
 public class _007_CustomPropertyEditorController {

@@ -58,7 +58,7 @@
 			<version>5.0.1.Final</version>
 		</dependency>
 
-		<!-- To use jstl tags -->
+		<!-- To use JSP JSTL tags. This is different from using Spring Form tags. Here we are talking about tags like <c:foreach> etc -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>

@@ -16,9 +16,9 @@ ExecuteTimeInterceptor – Intercept the web request, and log the controller execu
 MaintenanceInterceptor – Intercept the web request, check if the current time is in between the maintenance time, if yes then redirect it to 
 maintenance page.
 
-http://localhost:8082/005-MVC/003/001-hello
+http://localhost:8082/005-MVC/002/013-hello
  */
-package _003.Interceptors;
+package _002.Annotation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class _001_HelloController{
+public class _013_InterceptorController{
 
-   @RequestMapping(value = "/001-hello", method = RequestMethod.GET)
+   @RequestMapping(value = "/013-hello", method = RequestMethod.GET)
    public ModelAndView printHello() {
-		ModelAndView modelAndView = new ModelAndView("001-hello");
+		ModelAndView modelAndView = new ModelAndView("013-hello");
 		modelAndView.addObject("message", "Hello Spring MVC Framework!");
 		return modelAndView;
    }

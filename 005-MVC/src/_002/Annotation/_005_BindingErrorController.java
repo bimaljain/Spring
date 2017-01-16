@@ -3,8 +3,9 @@ If spring MVC fails to bind the data, you get an error page which is not descrip
 To handle this scenario, common solution is to return the admissionform again along with the complete description of the error.
 
 Use BindingResult. This is Spring's object that holds the result of the validation and binding and contains errors that may have occurred. The 
-BindingResult must come right after the model object that is validated or else Spring will fail to validate the object and throw an exception. BindingResult 
-reference will hold any error happened during data binding. Spring puts any errors in the BindingResult and adds the BindingResult to the view model.
+BindingResult must come right after the model object that is validated or else Spring will fail to validate the object and throw an exception. 
+BindingResult reference will hold any error happened during data binding. Spring puts any errors in the BindingResult and adds the BindingResult to the 
+view model.
 	
 The <form:errors> tag in the jsp outputs errors associated with the specified path.
 */

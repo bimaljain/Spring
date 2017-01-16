@@ -41,7 +41,7 @@ To declare a dependency to Jackson library (jackson-databind) include following 
 -------------
 If a method is annotated with @ResponseBody, Spring will bind the return value to outgoing HTTP response body. While doing that, Spring will [behind 
 the scenes] use HTTP Message converters to convert the return value to HTTP response body [serialize the object to response body], based on 
-Content-Type present in request HTTP header.
+Content-Type present in response HTTP header.
 
 ----------------
 @RestController:
@@ -52,7 +52,7 @@ As from Spring 4, @RestController is the preferred way to achieve the same funct
 @RestController annotation, which marks this class as a controller where every method returns a domain object/pojo instead of a view. It means that 
 we are no more using view-resolvers, we are no more directly sending the html in response but we are sending domain object converted into format 
 understood by the consumers. In our case, due to jackson library included in class path, the Message object will be converted into JSON format[ or 
-in XML if either the jackson-dataformat-xml.jar is present in classpath or Model class i annotated with JAXB annotations].
+in XML if either the jackson-dataformat-xml.jar is present in classpath or Model class is annotated with JAXB annotations].
 
 --------------
 @PathVariable:

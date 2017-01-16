@@ -13,11 +13,13 @@ public class UserController {
 	@Autowired
 	UserDAO userDAO;
 	
+	//http://localhost:8082/005-MVC/004/menu
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	public ModelAndView showMenu(){
 		return new ModelAndView("menu");
 	}
 	
+	//http://localhost:8082/005-MVC/004/empform
 	@RequestMapping(value="/empform", method=RequestMethod.GET)
 	public ModelAndView showForm(){
 		return new ModelAndView("empform", "user", new User());
@@ -30,20 +32,25 @@ public class UserController {
 		return new ModelAndView("redirect:viewemp");//will redirect to viewemp request mapping 		
 	}
 	
-	 @RequestMapping(value="/viewemp")  
+	//http://localhost:8082/005-MVC/004/viewemp
+	@RequestMapping(value="/viewemp")  
 	public ModelAndView viewEmp(){
 		 return new ModelAndView("viewemp", "userList", userDAO.getUsers());
 	}
 	 
-	 @RequestMapping(value="/editemp/{id}")  
+	//http://localhost:8082/005-MVC/004/editemp/301
+    @RequestMapping(value="/editemp/{id}")  
 	public ModelAndView editForm(@PathVariable("id") int id){
 		 User user = userDAO.getUserById(id);
 		 return new ModelAndView("editform", "user", user);
 	}
 	 
-	 @RequestMapping(value="/editemp/update", method=RequestMethod.POST)  
+    //since /update is relative to /editemp and not relative to root "/"
+    //remember last url is like /editemp/{id}, so only {id} is removed. /editemp stays
+	@RequestMapping(value="/editemp/update", method=RequestMethod.POST)  
 	public ModelAndView update(@ModelAttribute("user") User user){
 		 userDAO.updateUser(user);
+		 //since redirect happens from the browser, we need to append /004 again
 		 return new ModelAndView("redirect:/004/viewemp");
 	}
 	 

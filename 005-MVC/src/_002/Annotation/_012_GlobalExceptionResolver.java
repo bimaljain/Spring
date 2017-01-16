@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import helper._010_CustomException;
-
 @Controller
-public class _011_HelloController{
+public class _012_GlobalExceptionResolver{
 
 	//http://localhost:8082/005-MVC/002/011-hello
 	@RequestMapping(value = "/011-hello", method = RequestMethod.GET)

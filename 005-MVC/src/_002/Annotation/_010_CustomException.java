@@ -1,4 +1,4 @@
-package helper;
+package _002.Annotation;
 
 public class _010_CustomException extends RuntimeException{
 	private String exceptionMsg;

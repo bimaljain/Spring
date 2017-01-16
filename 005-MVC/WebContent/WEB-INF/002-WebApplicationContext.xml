@@ -10,8 +10,8 @@
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="_002.Annotation" />
-
 	<mvc:annotation-driven />
+
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
@@ -22,7 +22,7 @@
 		</property>
 	</bean>
 	
-	<!-- Exception resolver -->
+	<!-- EXCEPTION RESOLVER -->
 <!-- 	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> -->
 <!-- 		<property name="exceptionMappings"> -->
 <!-- 			<map> -->
@@ -32,4 +32,32 @@
 <!-- 		</property> -->
 <!-- 		<property name="defaultErrorView" value="010-exceptionpage" /> -->
 <!-- 	</bean> -->
+
+
+<!-- INTERCEPTORS:
+	 The ordered set of interceptors that intercept HTTP Servlet Requests handled by Controllers. Interceptors 
+	 allow requests to be pre/post processed before/after handling. Each interceptor must implement the 
+	 org.springframework.web.servlet.HandlerInterceptor or 
+	 org.springframework.web.context.request.WebRequestInterceptor interface. The interceptors in this set are 
+	 automatically detected by every registered HandlerMapping. The URI paths each interceptor applies to are 
+	 configurable.
+	 -->
+	<!-- Spring MVC will consider these interceptors for every URL request -->
+	<mvc:interceptors>
+		<bean class="_002.Annotation._013_ExecuteTimeInterceptor"/>
+		<ref bean="maintenanceInterceptor"/>
+	</mvc:interceptors>
+
+	<!-- if you want interceptors for specific URL request -->
+<!-- 	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/013-hello" /> -->
+<!-- 			<bean class="_002.Annotation._013_ExecuteTimeInterceptor" /> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
+	
+	<bean id="maintenanceInterceptor" class="_002.Annotation._013_MaintenanceInterceptor" >
+		<property name="maintenanceStartTime" value="12"/>
+		<property name="maintenanceEndTime" value="13"/>
+	</bean>
 </beans>
