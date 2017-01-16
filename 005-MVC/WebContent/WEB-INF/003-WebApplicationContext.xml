@@ -12,6 +12,14 @@
 	<context:component-scan base-package="_003.Interceptors" />
 	<mvc:annotation-driven />
 	
+	<!-- 
+	 The ordered set of interceptors that intercept HTTP Servlet Requests handled by Controllers. Interceptors 
+	 allow requests to be pre/post processed before/after handling. Each interceptor must implement the 
+	 org.springframework.web.servlet.HandlerInterceptor or 
+	 org.springframework.web.context.request.WebRequestInterceptor interface. The interceptors in this set are 
+	 automatically detected by every registered HandlerMapping. The URI paths each interceptor applies to are 
+	 configurable.
+	 -->
 	<!-- Spring MVC will consider these interceptors for every URL request -->
 	<mvc:interceptors>
 		<bean class="_003.Interceptors._001_ExecuteTimeInterceptor"/>

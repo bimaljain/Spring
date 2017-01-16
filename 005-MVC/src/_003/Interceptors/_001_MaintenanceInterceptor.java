@@ -11,6 +11,7 @@ public class _001_MaintenanceInterceptor extends HandlerInterceptorAdapter{
 
 	private int maintenanceStartTime;
 	private int maintenanceEndTime;
+	
 	public void setMaintenanceStartTime(int maintenanceStartTime) {
 		this.maintenanceStartTime = maintenanceStartTime;
 	}
