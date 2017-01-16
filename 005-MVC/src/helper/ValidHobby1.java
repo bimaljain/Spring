@@ -2,7 +2,7 @@
 The code below is mostly just boiler-plate. The three methods in the annotation are required by the JSR-303 spec. If our annotation accepted any 
 arguments, we would have defined them there as methods. We will see this in our next annotation later in this tutorial. The most important part of 
 the class above is the @Constraint annotation on the class which specifies that we will use our PhoneConstraintValidator class for the validation 
-logic. The message() method defines how the message is resolved
+logic. The message() method defines how the message is resolved.
  */
 
 package helper;

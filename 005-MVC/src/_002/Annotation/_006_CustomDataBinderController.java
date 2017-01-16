@@ -3,13 +3,13 @@ Data binding in Spring MVC
 Two of the most important tasks carried out by Spring MVC when you submit a form are Data binding and validation.
 
 Data Binding
-Spring MVC allows the use of command objects (aka form backing objects, model attributes, domain model objects – basically the objects used to 
+Spring MVC allows the use of command objects (aka form backing objects, model attributes, domain model objects ï¿½ basically the objects used to 
 transport data between your view and your controller) using just about any type. However, the Servlet API deals with form parameters as Strings.
 Spring uses a technique called data binding to covert between the String representation and the real underlying type. This enables user input to be 
 bound to the objects you use to process user input. In other words, the values entered by a user in a form can be used to set the property values on 
 a chosen object.
 As well as binding the values, Spring includes support for validation and binding result analysis.
-The binding functionality is provided by Spring’s org.springframework.validation.DataBinder class.
+The binding functionality is provided by Springï¿½s org.springframework.validation.DataBinder class.
 And when converting a String to some arbitrary type, DataBinders make use of ProperEditors. 
 
 Using PropertyEditors
@@ -64,7 +64,7 @@ public class _006_CustomDataBinderController {
 	public void customBinder(WebDataBinder binder){
 		binder.setDisallowedFields("phone"); //ignore data binding for phone
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy"); //set a different format for dob
-		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, false)); //using build-in property editor class
+		binder.registerCustomEditor(Date.class, "dob", new CustomDateEditor(dateFormat, false)); // property type, property name, property editor
 	}
 	
 	@RequestMapping(value="/006-admissionForm", method=RequestMethod.GET)

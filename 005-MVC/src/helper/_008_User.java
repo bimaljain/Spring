@@ -27,7 +27,7 @@ public class _008_User {
 	 4. [Validation Annotation Name] , eg, Size
 	 5. Default error message
 	 
-	 1. Placeholder {0} is always replaced dynamically by SPring MVC with the name of the field for which violation occurs.
+	 1. Placeholder {0} is always replaced dynamically by Spring MVC with the name of the field for which violation occurs.
 	 2. Placeholders {1},{2}, and so on would be replaced with the arguments values passed to the constraint annotation. Remember that Spring MVC uses
 	 	alphabetical order of the arguments to decide upon which placeholder to be replaced with which argument value. so {1} was replaced with the 
 	 	max value and {2} was replaced with the min value.

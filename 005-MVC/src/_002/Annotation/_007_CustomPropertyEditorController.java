@@ -1,5 +1,5 @@
 /*
-Write your customg property editor class which extends PropertyEditorSupport
+Write your custom property editor class which extends PropertyEditorSupport
 Register the class with the data binder
  */
 package _002.Annotation;

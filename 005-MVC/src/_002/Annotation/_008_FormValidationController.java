@@ -1,6 +1,7 @@
 /*
-Spring MVC Form Validation with Annotations Tutorial
-
+--------------------------------------------
+Spring MVC Form Validation with Annotations:
+--------------------------------------------
 Spring MVC supports any third party library which has implemented JSR 303 or JSR 349 specification.
 JSR 303 or JSR 349 implementation provides annotations for bean validation.
 We include hibernate validator library in the project.
@@ -34,15 +35,15 @@ public class _008_FormValidationController {
 	}
 	
 	/*
-	 Simply adding @Valid tells Spring to validate the “Subscriber” object. Nice! Notice we also add a “BindingResult” argument. This is Spring’s 
-	 object that holds the result of the validation and binding and contains errors that may have occurred. The BindingResult must come right after 
-	 the model object that is validated or else Spring will fail to validate the object and throw an exception.
+	Simply adding @Valid tells Spring to validate the ï¿½Subscriberï¿½ object. Nice! Notice we also add a ï¿½BindingResultï¿½ argument. This is Springï¿½s 
+	object that holds the result of the validation and binding and contains errors that may have occurred. The BindingResult must come right after 
+	the model object that is validated or else Spring will fail to validate the object and throw an exception.
 	
 	When Spring sees @Valid, it tries to find the validator for the object being validated. Spring automatically picks up validation annotations 
-	if you have “annotation-driven” enabled. Spring then invokes the validator and puts any errors in the BindingResult and adds the BindingResult 
+	if you have ï¿½annotation-drivenï¿½ enabled. Spring then invokes the validator and puts any errors in the BindingResult and adds the BindingResult 
 	to the view model.
 	
-	The “form:errors” tag outputs errors associated with the specified path.
+	The ï¿½form:errorsï¿½ tag outputs errors associated with the specified path.
 	 */
 	@RequestMapping(value="/008-admissionSuccess", method=RequestMethod.POST)
 	public ModelAndView saveForm(@Valid @ModelAttribute("user") _008_User user, BindingResult result){
