@@ -1,6 +1,5 @@
 /*
-Writing REST Client using RestTemplate
-
+REST Client using RestTemplate
  */
 
 package _005.Rest.Jackson;

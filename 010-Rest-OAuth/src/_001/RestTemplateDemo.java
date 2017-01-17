@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import _001.config.AuthTokenInfo;
 
-
 public class RestTemplateDemo {
 	public static final String REST_SERVICE_URI = "http://localhost:8082/010-Rest-OAuth";
     public static final String AUTH_SERVER_URI = "http://localhost:8082/010-Rest-OAuth/oauth/token";

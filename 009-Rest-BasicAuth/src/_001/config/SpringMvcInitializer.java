@@ -14,7 +14,6 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
         return new String[] { "/" };
     }
 
-    //NOT USING IN THIS DEMO
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		// TODO Auto-generated method stub

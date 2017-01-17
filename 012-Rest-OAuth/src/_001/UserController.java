@@ -1,54 +1,8 @@
 /*
-There are two ways through which we can JNDI lookup and wire it to the Controller DataSource, my spring bean configuration file contains both of 
-them but one of them is commented. You can switch between these and the response will be the same.
-
-1. Using jee namespace tag to perform the JNDI lookup and configure it as a Spring Bean. We also need to include jee namespace and schema definition in 
-this case.
-2. Creating a bean of type org.springframework.jndi.JndiObjectFactoryBean by passing the JNDI context name. jndiName is a required parameter for this 
-configuration.
-
--------------------------------------
-Tomcat DataSource JNDI Configuration:
--------------------------------------
-1. Add below configuration in the GlobalNamingResources section of the server.xml file:
-
-	<Resource name="jdbc/TestDB" 
-	      global="jdbc/TestDB" 
-	      auth="Container" 
-	      type="javax.sql.DataSource" 
-	      driverClassName="com.mysql.jdbc.Driver" 
-	      url="jdbc:mysql://localhost:3306/TestDB" 
-	      username="pankaj" 
-	      password="pankaj123" 
-	      
-	      maxActive="100" 
-	      maxIdle="20" 
-	      minIdle="5" 
-	      maxWait="10000"/>
-
-2. We also need to create the Resource Link to use the JNDI configuration in our application, best way to add it in the server context.xml file.
-
-	<ResourceLink name="jdbc/MyLocalDB"
-	                	global="jdbc/TestDB"
-	                    auth="Container"
-	                    type="javax.sql.DataSource" />
-
-3. Notice that ResourceLink name should be matching with the JNDI context name we are using in our application. 
-4. Also make sure MySQL jar is present in the tomcat lib directory, otherwise tomcat will not be able to create the MySQL database connection pool.
-
---------------
-java:comp/env:
---------------
-java:comp/env is the node in the JNDI tree where you can find properties for the current Java EE component (a webapp, or an EJB).
-
-Context envContext = (Context)initContext.lookup("java:comp/env");
-allows defining a variable pointing directly to this node. It allows doing
-
-DataSource ds = (DataSource) envContext.lookup("jdbc/dataSource");
-rather than
-
-DataSource ds = (DataSource) initContext.lookup("java:comp/env/jdbc/dataSource");
-Relative paths instead of absolute paths. That's what it's used for.
+In this demo:
+1: User details: is in-memory
+2. Client details: is in-memory
+3. Token Store: is in-memory
 
  */
 package _001;

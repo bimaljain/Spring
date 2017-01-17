@@ -1,17 +1,11 @@
 /*
-Spring Security is a lightweight security framework that provides authentication and authorization support in order to Secure Spring-based 
-applications. It integrates well with Spring MVC and comes bundled with popular security algorithm implementations.
-
--------------------------
-ADD: spring-security jars
--------------------------
-
 ----------------------------------------
 ADD Spring Security Configuration Class:
 ----------------------------------------
 The first and foremost step to add spring security in our application is to create Spring Security Java Configuration. This configuration creates a 
 Servlet Filter known as the "springSecurityFilterChain" which is responsible for all the security (protecting the application URLs, validating 
 submitted username and passwords, redirecting to the log in form, etc) within our application.
+[@EnableWebSecurity //this annotation creates springSecurityFilterChain bean]
 
 Method configure(AuthenticationManagerBuilder auth) in above class configures AuthenticationManagerBuilder with user credentials and allowed roles. 
 This AuthenticationManagerBuilder creates AuthenticationManager which is responsible for processing any authentication request. Notice that in this 
@@ -32,20 +26,20 @@ user defined page instead of showing default HTTP 403 page [ which is not so hel
 Register the springSecurityFilter with war:
 -------------------------------------------
 SecurityConfigurationInitializer.java is a initializer class which registers the springSecurityFilterChain [created above] with application war.
+AbstractSecurityWebApplicationInitializer creates the DelegatingFilterProxy which is used to look up a bean by the name of springSecurityFilterChain. 
+The springSecurityFilterChain is created using @EnableWebSecurity. Along with this, you need to add @Configuration annotation. Without it the Root 
+ApplicationContext is not even going to try to load the SecurityConfiguration.
 
------------------
-Controller class:
------------------
-Methods in controller class are trivial. Method getPrincipal is a generic function which returns the logged in user name from Spring SecurityContext.
-Method logoutPage handles the logging out with a simple call to SecurityContextLogoutHandler().logout(request, response, auth);. It’s handy and saves 
-you from putting cryptic logout logic in your JSP’s which is not really manageable.
+-----------------------
+Servlet 3.0+ Container:
+-----------------------
+Create a ServletInitializer class by extending AbstractAnnotationConfigDispatcherServletInitializer. This configures ServletContext programatically, 
+for Servlet 3.0+ environments. Servlet 3.0+ container will pick up this class and run it automatically.  This is the replacement for web.xml.
 
-----------------------------------------------
-Add Initializer class (equivalent of web.xml):
-----------------------------------------------
-Notice that above initializer class extends AbstractAnnotationConfigDispatcherServletInitializer which is the base class for all 
-WebApplicationInitializer implementations. Implementations of WebApplicationInitializer configures ServletContext programatically, for Servlet 3.0 
-environments. It means we won’t be using web.xml and we will deploy the app on Servlet 3.0 container.
+One thing to keep in mind that the Spring java based configuration api’s like AbstractAnnotationConfigDispatcherServletInitializer depends on 
+Servlet 3.0 containers. So make sure you don’t have any web.xml with servlet declaration less than 3.0. For our case, we have removed web.xml file 
+from our application.
+
  */
 
 package _001;
