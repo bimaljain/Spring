@@ -8,22 +8,24 @@
 
 	<context:component-scan base-package="_001" />
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	<!-- MySQL DB -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/bj" />
 		<property name="username" value="root" />
 		<property name="password" value="luvondrox" />
 	</bean>
+	
+	<bean id="userDAO_019" class="_001.UserDAO_019">
+		<property name ="dataSource" ref="dataSource" />
+	</bean>
 		
 <!-- ORACLE DB -->
+<!-- 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 <!-- 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" /> -->
 <!-- 		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" /> -->
 <!-- 		<property name="username" value="SYSTEM" /> -->
 <!-- 		<property name="password" value="luvondrox" /> -->
-
-	<bean id="userDAO_019" class="_001.UserDAO_019">
-		<property name ="dataSource" ref="dataSource" />
-	</bean>
+<!-- 	</bean> -->
 
 </beans>

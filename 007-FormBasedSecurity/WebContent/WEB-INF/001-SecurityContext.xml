@@ -8,7 +8,7 @@
 		<intercept-url pattern="/001/admin" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/001/db" access="hasRole('DBA')" />
 		<form-login authentication-failure-url="/001/access_denied" /> 
-		<!-- failure will kick in if user/pass does not match. If they match but authentication fail, you get default server generated error page -->
+		<!-- failure will kick in if user/pass does not match. If they match but authorization fails, you get default server generated error page -->
 	</http>
 	
 	<authentication-manager id="authManager">

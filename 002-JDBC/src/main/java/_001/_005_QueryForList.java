@@ -1,12 +1,3 @@
-/*
-queryForList() will always return multiple rows. If required type is supplied, then you get only one column; otherwise all the columns. 
-
---------------------------
-queryForList() vs query():
---------------------------
-query returns domain objects whereas queryForList() returns Map
- */
-
 package _001;
 
 import java.sql.SQLException;

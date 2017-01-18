@@ -1,5 +1,3 @@
-// queryForObject() will always return one row. If required type is supplied, then you get only one column; otherwise all the columns. 
-
 package _001;
 
 import java.sql.ResultSet;

@@ -1,7 +1,3 @@
-/*
-queryForMap() returns one row with multiple columns
- */
-
 package _001;
 
 import java.sql.SQLException;

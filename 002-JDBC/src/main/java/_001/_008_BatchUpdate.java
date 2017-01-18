@@ -1,5 +1,3 @@
-// A JDBC batch update is multiple updates using the same database session. That is, we don't have to open connections multiple times.
-
 package _001;
 
 import java.sql.PreparedStatement;

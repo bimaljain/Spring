@@ -63,8 +63,7 @@ class UserDAO_010{
 	            callableStatement.setString(1, "bimal");
 	            return callableStatement;
 			}},
-				Arrays.asList(
-						new SqlParameter("userid",Types.VARCHAR)
+				Arrays.asList(new SqlParameter("userid",Types.VARCHAR)
 			));
 	}
 	

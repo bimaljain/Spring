@@ -6,7 +6,7 @@ Spring JDBC modules simplifies the use of underlying JDBC API. org.springframewo
 access using JDBC. This interface provides abstraction from the low level repetitive JDBC operations like opening the database connection, preparing 
 the Jdbc statements, handling and processing exception, handling transactions, closing the connection etc.
 
-This interface is not meant to be implemented by the application code. We already have a well known implementation class:
+This interface is not meant to be implemented by the application code. We already have well known implementation classes:
 1.) JdbcTemplate
 2.) SimpleJdbcTemplate
 3.) NamedParameterJdbcTemplate
@@ -25,6 +25,8 @@ Here we are going to give a quick overview of the methods defined in JdbcOperati
 
 4.) query(String sql, RowMapper<T> rowMapper, Object... args):
 	Where args are same as above i.e. values for '?' placeholders. The difference is, these overloaded methods have Java Varargs as parameter.
+
+In place of rowMapper, we can also use rowCallBackHandler or resultSetExtractor
 
 5.) queryForABC(....):
 	Where ABC can be one of the followings:
@@ -46,20 +48,8 @@ Here we are going to give a quick overview of the methods defined in JdbcOperati
 	same as above methods, expect for the one with KeyHolder. It is used to capture auto-generated keys, typically resulted in an 'insert' statement.
 
 7.) batchUpdate(....):
-	Issue multiple SQL updates on a single JDBC Statement using batching. Followings are two new parameters which belong to different overloaded 
-	batchUpdate methods:
-	BatchPreparedStatementSetter{
-	     void setValues(PreparedStatement ps, int i);
-	     int getBatchSize();
-	            }
-	It's similar to PreparedStatementSetter described up, except it is called multiple times for each number of updates in the batch. It has extra 
-	int i parameter too, which is the 0 based index of the update iteration. Useful for setting params from user collection to the statement.
-	
-	ParameterizedPreparedStatementSetter<T>{
-	     void setValues(PreparedStatement ps, T argument);
-	                    }
-	Better than the last one as it passes the real user object to set the parameter to the statement. The corresponding batchUpdate accepts the 
-	collection of user object.
+	Issue multiple SQL updates on a single JDBC Statement using batching. 
+	A JDBC batch update is multiple updates using the same database session. That is, we don't have to open connections multiple times.
 	
 8.) execute(....):
 	It can be used to execute any arbitrary SQL but often used for DDL statements like creating/alerting/dropping tables etc.
@@ -79,9 +69,19 @@ at the spot e.g. send email or send JMS message etc. A new instance should be cr
 
 query(String sql, RowMapper<T> rowMapper)
 for mapping rows to T on a per-row basis. If we need to map exactly one result object per row then this is a good choice.
- */
 
-// query() will return multiple rows and multiple columns.
+------------
+CONCLUSIONS:
+------------
+query() will return multiple rows and multiple columns.
+queryForObject() will always return one row. If required type is supplied, then you get one column. If you supply rowMapper, you get multiple columns. 
+queryForList() will always return multiple rows. If required type is supplied, then you get only one column. You get all columns by default, rowMapper 
+	is not required. 
+queryForMap() returns one row with multiple columns
+
+queryForList() vs query(): query() returns list of domain objects whereas queryForList() returns list of maps
+
+ */
 
 package _001;
 
