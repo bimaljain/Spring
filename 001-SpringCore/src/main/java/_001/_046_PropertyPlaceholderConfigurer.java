@@ -8,6 +8,15 @@ To fix it, you can use PropertyPlaceholderConfigurer class to externalize the de
 configuration file via a special format – ${variable}.
 
 Declare a PropertyPlaceholderConfigurer in bean configuration file and map to the ‘database.properties‘ properties file you create.
+
+-----------------------------------------------------------------------
+PropertyPlaceholderConfigurer vs ReloadableResourceBundleMessageSource:
+-----------------------------------------------------------------------
+1. We use PropertyPlaceholderConfigurer when we need to load some property files whose properties are used in applicationcontext.xml of spring. We 
+can use the properties directly using JSTL expressions.
+2. We use ReloadableResourceBundleMessageSource when we need to use the property files outside the applicationcontext.xml. The properties loaded 
+using ReloadableResourceBundleMessageSource are not accessible in applicationcontext.xml
+
  */
 
 package _001;
@@ -52,7 +61,7 @@ public class _046_PropertyPlaceholderConfigurer {
 	}
 }
 
-@Component
+//@Component
 class LoginManager46 implements ApplicationContextAware {
 	@Autowired
 	private UserDAO46 userDao;
@@ -71,7 +80,7 @@ class LoginManager46 implements ApplicationContextAware {
 	}    
 }
 
-@Component
+//@Component
 class Listeners46 {
 	@Autowired
 	private LoginHistoryDAO46 loginHistoryDao;

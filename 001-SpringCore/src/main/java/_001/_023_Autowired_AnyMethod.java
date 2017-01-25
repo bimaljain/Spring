@@ -1,6 +1,5 @@
 /*
-Autowiring can be done on any method where it searches for the type of the bean specified in the method’s parameter.
-So type of parameter of a method should be available inside beans.xml
+Autowiring can be done on any method where Spring looks at the method’s parameters.
  */
 package _001;
 

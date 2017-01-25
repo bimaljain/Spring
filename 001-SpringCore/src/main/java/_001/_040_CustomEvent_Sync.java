@@ -1,7 +1,7 @@
 /*
 In this article, we will look into an example of spring’s ApplicationEvent, to maintain the login history of users. The bean responsible for recording 
 login history will implement ApplicationListener and register itself in the context XML. When a user successfully logs in, an ApplicationEvent will 
-be published.  The login history bean registered will receive the event and add an entry for the logged in user.
+be published. The login history bean registered will receive the event and add an entry for the logged in user.
 
 CREATE TABLE USER_DETAILS (
   ID INT NOT NULL,
@@ -37,7 +37,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.BeansException;
@@ -55,6 +54,7 @@ import org.springframework.stereotype.Component;
 
 //uncomment @Component first
 public class _040_CustomEvent_Sync {
+	
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("_040_CustomEvent_Sync.xml");
 		String userId = "admin";
@@ -108,8 +108,8 @@ class UserDAO extends JdbcDaoSupport {
 
 class LoginEvent extends ApplicationEvent {
 	private static final long serialVersionUID = 1L;
-
 	//The base class (ApplicationEvent) defines a constructor which takes an object as a parameter.
+	//There is no default constructor in base class
 	public LoginEvent(User user) {
         super(user);
     }

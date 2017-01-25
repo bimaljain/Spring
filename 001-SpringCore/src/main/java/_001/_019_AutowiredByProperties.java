@@ -19,7 +19,7 @@ public class _019_AutowiredByProperties {
 
 	//Autowiring on property need a default constructor, otherwise you get below error
 	//Failed to instantiate: No default constructor found
-	//If you dont specify any constructor, you always get default constructor. I am still writing one below.
+	//If you don't specify any constructor, you always get default constructor. I am still writing one below.
 	public _019_AutowiredByProperties(){
 	}	
 

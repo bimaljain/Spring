@@ -36,7 +36,7 @@ with XML or by package scanning).
 beans within the application context.
 
 ----------------------------------------------------
-@Component vs @Controller vs @Repository vs @Service
+@Component vs @Controller vs @Service vs @Repository 
 ----------------------------------------------------
 Similarity:
 First point worth highlighting is that with respect to scan-auto-detection and dependency injection for BeanDefinition all these annotation 
@@ -50,20 +50,20 @@ they themselves are annotated with @Component.
 
 Just take a look at @Controller, @Service and @Repository annotation definition
 
-@Component
-public @interface Service {
-    ….
-}
- 
-@Component
-public @interface Repository {
-    ….
-}
- 
-@Component
-public @interface Controller {
-    …
-}
+	@Component
+	public @interface Service {
+	    ….
+	}
+	 
+	@Component
+	public @interface Repository {
+	    ….
+	}
+	 
+	@Component
+	public @interface Controller {
+	    …
+	}
 
 Thus it’s not wrong to say that @Controller, @Service and @Repository are special type of @Component annotation. <context:component-scan> picks them 
 up and registers their following classes as beans, just as if they were annotated with @Component.

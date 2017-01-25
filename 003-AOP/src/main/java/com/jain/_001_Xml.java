@@ -169,6 +169,7 @@ Spring by default will create JDK Proxy object. So,
 
 We need to import AspectJ weaver jar for this example, though we are not using AspectJ. However Spring isn't using the AspectJ weaver jar in this 
 case. It is simply reusing some of the classes from aspectjweaver.jar. It still uses dynamic proxies - doesn't do byte code modification.
+
  */
 
 package com.jain;
@@ -183,7 +184,7 @@ public class _001_Xml {
 	public static void main(String[] args) throws SQLException{
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("_001.xml");
 		IUser user = (IUser)ctx.getBean("user"); // proxy object should be casted to the interface and not to the impl class
-		System.out.println(user.getClass());
+		System.out.println(user.getClass()); //OUTPUT-class com.jain.$Proxy6
 		user.createUser();
 		user.updateUser();
 		try{
@@ -199,10 +200,11 @@ interface IUser{
 	public void printThrowException();
 }
 
-//@Component
+@Component
 class User implements IUser{
 	public void createUser() {
 		System.out.println("creating user");
+		updateUser(); // this method call (internal call) is not going to print any advice
 	}
 	public int updateUser() {
 		System.out.println("updating user");		
@@ -214,7 +216,7 @@ class User implements IUser{
 	}
 }
 
-//@Component
+@Component
 class LogAdvice{
 	public void beforeAdvice(){ 
 		System.out.println("Going to setup user profile."); 
@@ -230,3 +232,20 @@ class LogAdvice{
 		System.out.println("There has been an exception: " + ex.toString()); 
 	}	   
 }
+
+/*
+OUTPUT:
+class com.jain.$Proxy6
+Going to setup user profile.
+creating user
+updating user
+user profile has been setup.
+Going to setup user profile.
+updating user
+user profile has been setup.
+Returning:7
+Going to setup user profile.
+Exception raised
+user profile has been setup.
+There has been an exception: java.lang.IllegalArgumentException
+*/

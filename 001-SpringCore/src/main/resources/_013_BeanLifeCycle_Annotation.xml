@@ -9,7 +9,7 @@
 
 	<context:component-scan base-package="_001" />
 
-	<!-- these beans are for _017_Autowired.java -->
+	<!-- these beans are for _017_Autowired*.java -->
 	<bean id="address" class="_001.Address9">
 		<constructor-arg index="0" value="Fremont Blvd" />
 		<constructor-arg index="1" value="Fremont" />

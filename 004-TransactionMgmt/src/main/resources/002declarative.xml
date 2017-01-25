@@ -31,7 +31,7 @@
          <tx:method name="createUser"/>
       </tx:attributes>
    </tx:advice>
-	
+
    <aop:config proxy-target-class="true">
       <aop:pointcut id="createOperation" expression="execution(* com.jain._002Declarative.*(..))"/>
       <aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>

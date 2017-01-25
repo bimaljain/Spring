@@ -14,7 +14,7 @@ public class _022_AutowiredBySetterMethod {
 
 	private Address9 address99;
 	
-	//Autowiring on property need a default constructor, otherwise you get below error
+	//Autowiring on setter methods need a default constructor, otherwise you get below error
 	//Failed to instantiate: No default constructor found
 	//If you dont specify any constructor, you always get default constructor. I am still writing one below.
 	public _022_AutowiredBySetterMethod(){

@@ -19,7 +19,7 @@ in a bean’s lifecycle.
 then bean must be defined in spring xml file with constructor injection using which container will instantiate the bean otherwise it will throw bean 
 creation exception.
 
-4) Spring injects the values and references if any into bean’s properties.
+4) Spring injects the values and references, if any, into bean’s properties.
 
 5) If the bean implements BeanNameAware interface, Spring passes the bean’s ID to the setBeanName () method and executes this method.
 
@@ -85,7 +85,7 @@ These annotations are used to call the bean life cycle methods just like init an
 -------------------------
 BeanFactoryPostProcessor:
 -------------------------
-If you want to run some code before bean factory creates all the singletons defined in the xml, you can use bean post factory post processor.
+If you want to run some code before bean factory creates all the singletons defined in the xml, you can use bean factory post processor.
 
 ---------------------
 Bean Post Processors:

@@ -2,7 +2,7 @@
 When we use spring component scan either in JavaConfig or XML configuration, all the classes annotated by @Component, @Service, @Repository and 
 @Controller stereotypes are by default auto detected. Now using spring filter, we can extend the ability of component scan. Using filter we can 
 include those classes to auto detect which are not annotated by stereotype annotations and at the same time we can exclude those classes not to 
-auto detect which are annotated by stereotype annotations. Here we will provide complete example of spring filter to customize component scan.
+auto detect which are annotated by stereotype annotations.
 
 Component Scan Filter Types:
 ----------------------------
@@ -72,6 +72,7 @@ public class _027_Filter_withAnnotation {
 
 } 
 
+// this will be included
 @MyAnnotation
 class Service {
 	public void doSomethingService(){

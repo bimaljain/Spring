@@ -1,6 +1,6 @@
 /*
 Circular Dependency:
-You can configure circular dependencies with setter injection only and not with CDI.
+You can handle circular dependencies with setter injection only and not with CDI.
  */
 
 package _001;

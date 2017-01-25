@@ -16,6 +16,7 @@ public class _006_MethodInjection_Context {
 }
 
 class Singleton2 implements ApplicationContextAware{	
+	//there is no need of setter methods since we are not injecting prototype from outside.
 	private Prototype2 prototype;
 	private ApplicationContext ctx;
 	

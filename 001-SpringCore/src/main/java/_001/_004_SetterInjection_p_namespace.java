@@ -19,9 +19,8 @@ and property tag.
 
 4. Overriding injected value:
 If we use both CDI and SDI , Spring container will override the CDI by SDI.
-It means , if we define both SDI and CDI on the same attributes, then SDI value will be injected to that attribute by spring container.
-
  */
+
 package _001;
 
 import java.util.List;

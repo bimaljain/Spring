@@ -32,7 +32,7 @@ Spring provides below tag that can be used for method injection.
 	
 Lookup method Injection:
 ------------------------
-A lookup method causes the IoC container to override the given  method and return the bean with the name given in the bean  attribute.
+A lookup method causes the IoC container to override the given method and return the bean with the name given in the bean attribute.
 We need to create an abstract method  in Singleton class with return type as  PrototypeBean
 
 Spring provides below tag that can be used for method injection.

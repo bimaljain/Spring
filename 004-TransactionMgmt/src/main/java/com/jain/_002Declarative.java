@@ -13,13 +13,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-//@Component("declarative002")
+@Component("declarative002")
 public class _002Declarative{
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("002declarative.xml");
 		_002Declarative userDAO = (_002Declarative)context.getBean("declarative002");
-		System.out.println(userDAO.getClass());
+		System.out.println(userDAO.getClass()); //class com.jain._002Declarative$$EnhancerBySpringCGLIB$$6b6538b8
 		userDAO.createUser();
 	}
 	

@@ -21,14 +21,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-//@Component("annotation")
+@Component("annotation")
 public class _004Annotation{
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("004annotation.xml");
 		_004Annotation userDAO = (_004Annotation)context.getBean("annotation");
-		// Check this. There is no proxy created. Which is correct since there is no transaction related aspect in the xml.
-		System.out.println(userDAO.getClass());
+		// Proxy is created here
+		System.out.println(userDAO.getClass()); //class com.jain._004Annotation$$EnhancerBySpringCGLIB$$cbd504c4
 		userDAO.createUser();
 	}
 

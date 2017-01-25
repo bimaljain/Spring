@@ -19,7 +19,7 @@ public class _003_SetterInjection_Collection {
 }
 
 class Person3 {
-	//Setter DI only need to know about setter methods. (and not the property names)
+	//Setter DI only need to know about setter methods. (and not the property names). (ignore set and lower case first character)
 	//below, properties has a different names than their setter methods. But setter DI still works.
 	private List<String> languages1;
 	private List<Address3> address1;

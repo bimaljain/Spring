@@ -13,14 +13,14 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-//@Component("programatic003")
+@Component("programatic003")
 public class _003Programatic{
 
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("003programatic.xml");
 		_003Programatic userDAO = (_003Programatic)context.getBean("programatic003");
 		// Check this. There is no proxy created. Which is correct since there is no transaction related aspect in the xml.
-		System.out.println(userDAO.getClass());
+		System.out.println(userDAO.getClass()); //class com.jain._003Programatic
 		userDAO.createUser();
 	}
 	

@@ -18,7 +18,7 @@ public class _001Declarative implements IUserDAO{
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("001declarative.xml");
 		IUserDAO userDAO = (IUserDAO)context.getBean("declarative001");
-		System.out.println(userDAO.getClass());
+		System.out.println(userDAO.getClass()); //class com.jain.$Proxy8
 		userDAO.createUser();
 	}
 	

@@ -9,36 +9,28 @@ Autowiring Modes:There are following autowiring modes which can be used to instr
 attribute of the <bean/> element to specify autowire mode for a bean definition.
 
 1. no: This is default setting which means no autowiring and you should use explicit bean reference for wiring.
-
 2. byName: Spring container looks at the properties (actually setter methods) of the beans on which autowire attribute is set to byName in the XML 
 configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file. The 
 requirement is that the name of the member variables of the bean must match one bean id defined in the xml. If matches are found, it will inject 
 those beans otherwise, it will throw exceptions.
-
 3. byType: Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then 
 tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, 
 a fatal exception is thrown.
-
 4. constructor: This mode is very similar to byType, but it applies to constructor arguments. Spring container looks at the beans on which autowire 
 attribute is set to constructor in the XML configuration file. It then tries to match and wire its constructor's argument with exactly one of the 
 beans name in configuration file. If matches are found, it will inject those beans otherwise, it will throw exceptions.
-
 5. autodetect: Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.
-
 
 Autowiring all beans in config files with single tag
 If we want to autowire all the beans in the config file by one of the above 4 types, then rather than specifying autowire strategy in each bean 
 we can specify the same in beans tag which will apply it for all the beans.
-
 
 Limitations with autowiring: 
 Explicit wiring is recommended over autowiring. Though, autowiring can significantly reduce the need to specify properties or constructor arguments 
 but you should consider the limitations/disadvantages of autowiring before using them.
 
 1. Overriding possibility: You can still specify dependencies using <constructor-arg> and <property> settings which will always override autowiring.
-
 2. Primitive data types: You cannot autowire simple properties such as primitives, Strings, and Classes.
-
 3. Confusing nature: Autowiring is less exact than explicit wiring, so if possible prefer using explict wiring.
 
  */
@@ -72,8 +64,8 @@ class Person6 {
 		return id1;
 	}
 
-	public void setId(int id) {
-		this.id1 = id;
+	public void setId(int id1) {
+		this.id1 = id1;
 	}
 
 	public String getName() {

@@ -29,7 +29,7 @@ public class _004_AspectJ {
 	}
 }
 
-@Component
+//@Component
 class User004 {
 	public void createUser() {
 		System.out.println("creating user");
@@ -44,7 +44,7 @@ class User004 {
 	}
 }
 
-@Component
+//@Component
 @Aspect
 class LogAdvice004{
 	@Before("execution(* com.jain.*.*(..))")
