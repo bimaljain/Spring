@@ -21,6 +21,14 @@ the form to the “user” model attribute.
 To access our form backing object, we need to inject it via the @ModelAttribute annotation. An @ModelAttribute on a method argument indicates 
 the argument will be retrieved from the model. If not present in the model, the argument will be instantiated first and then added to the model.
 
+---------------
+Command Object:
+---------------
+Command Object - a JavaBean which will be populated with the data from your forms.
+Think of Command Object as a POJO/JavaBean/etc.. that backs the form in your presentation layer.
+Once the form is submitted, all the individual attributes are mapped/bound to this object. On the way up to presentation, Command Object properties 
+may be used to pre/populate the form.
+
 ------------------------
 Spring MVC Form Binding:
 ------------------------
