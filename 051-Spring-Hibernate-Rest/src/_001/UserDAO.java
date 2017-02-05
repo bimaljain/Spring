@@ -14,7 +14,7 @@ public class UserDAO {
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	@Transactional
+	@Transactional()
 	public void createUser(User user){
 		Session session = sessionFactory.getCurrentSession();
 		session.save(user);
