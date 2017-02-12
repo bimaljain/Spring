@@ -46,6 +46,7 @@ class JavaConfig {
 	@Bean(name="person99", autowire=Autowire.BY_NAME, initMethod = "init", destroyMethod = "destroy" )
 	public Person10 person2(){
 		return new Person10();
+		//or return new Person10(address());
 	}
 }
 

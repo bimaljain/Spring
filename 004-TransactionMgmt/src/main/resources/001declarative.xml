@@ -39,7 +39,7 @@
    </tx:advice>   
    	
 	<!-- 
-	Our advice is ready, as we said by using above line that we want transaction only on that methods which start with save and modify. Now we are 
+	Our advice is ready, as we said by using above line that we want transaction only on that methods which start with create. Now we are 
 	going to say which beans require the above advice by using pointcut element of aop-config.
 	-->
 	
