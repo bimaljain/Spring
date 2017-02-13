@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.client.RestTemplate;
 
 import _001.config.AuthTokenInfo;
@@ -29,7 +29,7 @@ public class RestTemplateDemo {
     
 	private static HttpHeaders getHeadersWithClientCredentials(){
 		String plainClientCredentials="my-trusted-client:secret";
-		String base64ClientCredentials = new String(Base64.encodeBase64(plainClientCredentials.getBytes()));
+		String base64ClientCredentials = new String(Base64.encode(plainClientCredentials.getBytes()));
 		HttpHeaders headers = getHeaders();
 		headers.add("Authorization", "Basic " + base64ClientCredentials);
 		return headers;

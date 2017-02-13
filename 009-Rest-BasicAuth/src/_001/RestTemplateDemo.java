@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -19,7 +19,7 @@ public class RestTemplateDemo {
 
 	private static HttpHeaders getHeaders(){
 		String plainCredentials="admin:admin";
-		String base64Credentials = new String(Base64.encodeBase64(plainCredentials.getBytes()));
+		String base64Credentials = new String(Base64.encode(plainCredentials.getBytes()));
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", "Basic " + base64Credentials);
